@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 function UserInputPage() {
   const navigate = useNavigate();
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     navigate('/dashboard');
   };
   return (
