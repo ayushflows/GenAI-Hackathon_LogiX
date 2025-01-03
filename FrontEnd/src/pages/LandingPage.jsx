@@ -55,7 +55,7 @@ function LandingPage() {
           User Analytics
         </motion.h2>
         <motion.p
-          className='max-w-[40vw] text-center mx-auto mt-12 text-[#9299b8] text-[19px]'
+          className='max-w-[40vw] text-center mx-auto mt-12 text-[#9299b8] text-[17px] inter-regular'
           initial={{ y: '100px', opacity: 0 }}
           animate={{
             y: animateText ? 0 : '100px',
@@ -70,9 +70,9 @@ function LandingPage() {
           We Provide Good User Analytics, Engagement, and Insights for social media accounts to help them grow.
         </motion.p>
       </div>
-      <div className='w-full flex justify-center items-center mt-12 relative'>
+      <div className='w-full flex justify-center items-center mt-12 relative inter-regular'>
         <motion.button
-          className='bg-[#b5e0f3] text-black w-[160px] h-[50px] flex justify-center items-center text-xl transition duration-200 ease-in-out transform'
+          className='bg-[#b5e0f3] text-black w-[160px] h-[50px] flex justify-center items-center text-lg transition duration-200 ease-in-out transform'
           initial={{ opacity: 0, scale: 1 }}
           animate={{
             opacity: animateText ? 1 : 0,
@@ -88,7 +88,7 @@ function LandingPage() {
           Get Started <span className='ml-2'>&rarr;</span>
         </motion.button>
         <motion.button
-          className='bg-[#0d1229ab] bg-opacity-30 backdrop-blur-xl ml-10 text-white w-[160px] h-[50px] flex justify-center items-center text-xl transition duration-200 ease-in-out transform'
+          className='bg-[#0d1229ab] bg-opacity-30 backdrop-blur-xl ml-10 text-white w-[160px] h-[50px] flex justify-center items-center text-lg transition duration-200 ease-in-out transform'
           initial={{ opacity: 0, scale: 1 }}
           animate={{
             opacity: animateText ? 1 : 0,

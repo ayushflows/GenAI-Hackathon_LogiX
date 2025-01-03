@@ -14,14 +14,14 @@ function UserInputPage() {
       <Navbar />
       <div className='abel-regular w-full text-center pt-32 relative flex flex-col items-center'>
         <h1 className='text-[5.2vw] font-bold'>Analytics Report</h1>
-        <p className='max-w-[40vw] text-center mx-auto mt-10 text-[#9299b8] text-[19px]'>
+        <p className='max-w-[40vw] text-center mx-auto mt-10 text-[#9299b8] text-[17px] inter-regular'>
           Provide Your Details to Get the Analytics Report and Insights of your social account.
         </p>
-        <form className='mt-12 w-full' onSubmit={handleSubmit}>
+        <form className='mt-12 w-full inter-regular' onSubmit={handleSubmit}>
           <div className='flex items-center justify-evenly'>
             <div className='mb-6'>
               <label htmlFor='platform' className='block mb-2 text-lg text-gray-200'>Select Social Media Platform:</label>
-              <select id='platform' className='w-[300px] p-2 rounded bg-gray-800 text-white'>
+              <select id='platform' className='w-[300px] p-2 rounded bg-gray-800 text-white text-[18px]'>
                 <option value='' disabled selected>
                   -- Select Platform --
                 </option>
@@ -33,7 +33,7 @@ function UserInputPage() {
             </div>
             <div className='mb-6'>
               <label htmlFor='accountName' className='block mb-2 text-lg text-gray-200'>Select Account Name:</label>
-              <select id='accountName' className='w-[300px] p-2 rounded bg-gray-800 text-white'>
+              <select id='accountName' className='w-[300px] p-2 rounded bg-gray-800 text-white text-[18px]'>
                 <option value='' disabled selected>
                   -- Select Account --
                 </option>
@@ -44,7 +44,7 @@ function UserInputPage() {
             </div>
             <div className='mb-6'>
               <label htmlFor='postType' className='block mb-2 text-lg text-gray-200'>Post Type:</label>
-              <select id='postType' className='w-[300px] p-2 rounded bg-gray-800 text-white'>
+              <select id='postType' className='w-[300px] p-2 rounded bg-gray-800 text-white text-[18px]'>
                 <option value='' disabled selected>
                   -- Select Post Type --
                 </option>
@@ -54,7 +54,7 @@ function UserInputPage() {
               </select>
             </div>
           </div>
-          <button type='submit' className='bg-[#b5e0f3] text-black w-[150px] h-[50px] mt-10 rounded'>
+          <button type='submit' className='bg-[#b5e0f3] text-black w-[130px] h-[42px] mt-10 rounded inter-regular text-[20px]'>
             Submit
           </button>
         </form>

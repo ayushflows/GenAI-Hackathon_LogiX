@@ -3,7 +3,7 @@ import logoImg from "../assets/logix_logo.png";
 
 function Navbar() {
   return (
-    <nav className='w-full outfit-regular py-4 px-12 flex justify-between items-center glassy-navbar'>
+    <nav className='w-full inter-regular py-4 px-12 flex justify-between items-center glassy-navbar'>
       <div className='text-white text-2xl font-semibold flex justify-center items-center'>
         <img src={logoImg} alt='LogiX Logo' className='inline-block h-8 mr-2 filter invert contrast-100' />
         <span className='sketch-text'>LogiX</span>
