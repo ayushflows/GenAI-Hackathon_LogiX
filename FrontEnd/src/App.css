@@ -45,3 +45,28 @@
   font-family: "Inter", serif;
   font-optical-sizing: auto;
 }
+.glow-bar {
+  box-shadow: 0 0 8px #f97416b3;
+  height: 4px;
+  background: linear-gradient(to right, transparent, #f97316 50%, transparent);
+  border-radius: 2px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 #2E3139;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #2E3139;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #f97316;
+  border-radius: 10px;
+  border: 2px solid #2E3139;
+}

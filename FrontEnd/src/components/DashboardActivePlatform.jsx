@@ -12,7 +12,7 @@ function DashboardActivePlatform() {
   const [posttype, setPostType] = useState('Reel');
 
   return (
-    <div className='w-full flex justify-start items-center ml-12'>
+    <div className='flex justify-start items-center ml-12'>
       <div className='px-8 flex justify-start gap-[40px] bg-[#22252D] text-[#e2e2e2] rounded-[10px]'>
         {socialmedias.map((socialmedia) => (
           <button
@@ -32,8 +32,8 @@ function DashboardActivePlatform() {
         ))}
       </div>
       <div className={`ml-10 flex items-center gap-2 justify-center bg-[#22252D] py-2 px-4 rounded-lg shadow-lg`}>
-        <p className='text-lg text-gray-300'>Post Type: </p>
-        <p className='text-xl text-white'> {posttype}</p>
+        <p className='text-md text-gray-300'>Post Type: </p>
+        <p className='text-md text-white'> {posttype}</p>
       </div>
     </div>
   );

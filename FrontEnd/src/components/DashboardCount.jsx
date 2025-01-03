@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const metrics = [
   {
     id: 1,
     value: '2.1k',
-    label: 'Average Likes',
+    label: 'Likes',
     gradient: 'from-[#ff34341f] via-[#22252d] to-[#22252d]',
     border: 'border-[#ff34341f]',
     icon: (
@@ -16,7 +16,7 @@ const metrics = [
   {
     id: 2,
     value: '347',
-    label: 'Average Comments',
+    label: 'Comments',
     gradient: 'from-[#45ff341f] via-[#22252d] to-[#22252d]',
     border: 'border-[#45ff341f]',
     icon: (
@@ -28,7 +28,7 @@ const metrics = [
   {
     id: 3,
     value: '1.74k',
-    label: 'Average Shares',
+    label: 'Shares',
     gradient: 'from-[#3452ff1f] via-[#22252d] to-[#22252d]',
     border: 'border-[#3452ff1f]',
     icon: (
@@ -40,7 +40,7 @@ const metrics = [
   {
     id: 4,
     value: '8.5k',
-    label: 'Average Views',
+    label: 'Views',
     gradient: 'from-[#f534ff1f] via-[#22252d] to-[#22252d]',
     border: 'border-[#f534ff1f]',
     icon: (
@@ -52,9 +52,16 @@ const metrics = [
 ];
 
 function DashboardCount() {
+  const [postType, setPostType] = useState('Reel');
     return (
-      <div id="dashboard" className="mx-12 mt-4 inter-regular">
-        <h2 className="text-lg text-[#ebebeb]">Dashboard</h2>
+      <div id="dashboard" className="mx-12 mt-8 inter-regular">
+        <div className="flex items-center gap-2">
+          <h2 className="text-lg text-[#ebebeb] relative pb-1">
+            Dashboard
+            <span className="absolute bottom-[-4px] left-0 w-full h-[4px] bg-orange-500 rounded-full glow-bar"></span>
+          </h2>
+        </div>
+        <p className='text-[#c5c5c5] mt-3'>On an average your each {postType} has: </p>
         <div className="w-full flex justify-between items-center mt-4">
           {metrics.map((metric) => (
             <div
