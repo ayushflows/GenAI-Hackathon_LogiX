@@ -26,6 +26,15 @@ function DashboardPage() {
     setActiveButton(currentSection);
   };
 
+  const handleButtonClick = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    const scrollContainer = document.getElementById('analytics-overview');
+    scrollContainer.scrollTo({
+      top: section.offsetTop - 60,
+      behavior: 'smooth',
+    });
+  };
+
   useEffect(() => {
     const scrollContainer = document.getElementById('analytics-overview');
     scrollContainer.addEventListener('scroll', handleScroll);
@@ -44,7 +53,7 @@ function DashboardPage() {
               <span className='dashboard-sketch-text'>LogiX</span>
             </div>
           </div>
-          <DashboardNavbar setActiveButton={setActiveButton} activeButton={activeButton}/>
+          <DashboardNavbar setActiveButton={setActiveButton} activeButton={activeButton} onButtonClick={handleButtonClick}/>
         </div>
         <div id='analytics-overview' className='w-[calc(100%-230px)] h-full bg-[#2E3139] overflow-y-auto custom-scrollbar'>
           <h1 className='text-2xl font-normal figtree-regular w-full py-3 text-center text-[#e6e6e6] mb-2'> Analytics Overview </h1>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function DashboardNavbar({ setActiveButton, activeButton }) {
+function DashboardNavbar({ setActiveButton, activeButton, onButtonClick }) {
 
   const menuItems = [
     {
@@ -48,7 +48,10 @@ function DashboardNavbar({ setActiveButton, activeButton }) {
           key={item.key}
           className={`w-[85%] flex justify-start items-center gap-[6px] py-4 pl-4 text-[15px] font-thin text-gray-300 inter-regular relative ${activeButton === item.key
                      ? 'bg-gradient-to-r from-[rgba(8,9,29,0.2)] via-[rgba(8,9,29,0.10)] to-[rgba(12,8,36,0.05)] backdrop-blur-md border border-[rgba(119,119,119,0.36)] rounded-lg': '' }`}
-          onClick={() => setActiveButton(item.key)}
+          onClick={() => {
+            setActiveButton(item.key);
+            onButtonClick(item.key);
+          }}
           aria-pressed={activeButton === item.key}
         >
           {activeButton === item.key && (
