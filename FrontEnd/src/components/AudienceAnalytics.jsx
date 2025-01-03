@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { countriesData } from "../data/countriesData";
 import { PieChart } from "@mui/x-charts";
-import { color } from "chart.js/helpers";
 
 const AudienceAnalytics = () => {
   const [highlightedCountry, setHighlightedCountry] = useState("IN");
@@ -46,38 +45,22 @@ const AudienceAnalytics = () => {
   const handleMouseLeave = () => {
     setHighlightedIndex(null);
   };
-  const genderData2 = [
-    ["Gender", "Percentage"],
-    ["Male", 60], 
-    ["Female", 40],
+
+  const ageGroups = [
+    { range: "0-14 years", label: "Children", icon: "👶" },
+    { range: "15-24 years", label: "Young Adults", icon: "🧑" },
+    { range: "25-34 years", label: "Adults", icon: "👨" },
+    { range: "35-44 years", label: "Mid Adults", icon: "👩" },
+    { range: "45-54 years", label: "Older Adults", icon: "🧓" },
+    { range: "55-64 years", label: "Seniors", icon: "👴" },
+    { range: "65+ years", label: "Elders", icon: "👵" },
   ];
-  const genderChartOptions = {
-    pieSliceText: "percentage", 
-    slices: {
-      0: { offset: 0.1, textStyle: { color: "#fff" }, color: "#36B4FF" },
-      1: { offset: 0.1, textStyle: { color: "#fff" }, color: "#06B2AF" },
-    },
-    backgroundColor: "#22252D",
-    legend: {
-      textStyle: { color: "#ebebeb" },
-      alignment: "center",
-      position: "labeled",
-    },
-    animation: {
-      startup: true,
-      duration: 1000,
-      easing: "out",
-    },
-    pieSliceText: 'percentage',
-    is3D: true,
-    chartArea: {
-      width: "90%",
-      height: "90%",
-    },
-  };
+
+  const ageRange = "15-24 years";
+  const ageGroup = ageGroups.find(group => group.range === ageRange);
 
   return (
-    <div id="Audience" className="mx-12 mt-8 inter-regular mb-8">
+    <div id="audience" className="mx-12 mt-[60px] inter-regular mb-8">
       <div className="flex items-center gap-2">
         <h2 className="text-lg text-[#ebebeb] relative pb-1">
           Audience Analytics
@@ -102,46 +85,86 @@ const AudienceAnalytics = () => {
           <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
             <h3 className="text-md text-[#ebebeb] mb-4">Audience Gender</h3>
             <div style={{ width: '100%', height: '90%' }}>
-            <PieChart
-              series={[
-                {
-                  data: genderData,
-                  innerRadius: 30,
-                  outerRadius: 100,
-                  paddingAngle: 5,
-                  cornerRadius: 5,
-                  startAngle: 0,
-                  endAngle: 360,
-                  highlightScope: { fade: 'global', highlight: 'item' },
-                  faded: { innerRadius: 30, additionalRadius: -30, color: 'white' },
-                  arcLabel: (item) => `${item.value}%`,
-                  arcLabelMinAngle: 20,
-                  arcLabelRadius: '40%',
-                },
-              ]}
-              width={500}
-              height={300}
-              highlightedIndex={highlightedIndex}
-              onMouseEnter={(event, index) => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            />
+              <PieChart
+                series={[
+                  {
+                    data: genderData,
+                    innerRadius: 30,
+                    outerRadius: 100,
+                    paddingAngle: 5,
+                    cornerRadius: 5,
+                    startAngle: 0,
+                    endAngle: 360,
+                    highlightScope: { fade: 'global', highlight: 'item' },
+                    faded: { innerRadius: 30, additionalRadius: -30, color: 'white' },
+                    arcLabel: (item) => `${item.label}: ${item.value}%`,
+                    arcLabelMinAngle: 30,
+                    arcLabelRadius: '110%',
+                    legend: false,
+                  },
+                ]}
+                sx={{
+                  '& text': { fill: 'white' },
+                  '& path': { stroke: 'gray' },
+                }}
+                width={500}
+                height={300}
+                highlightedIndex={highlightedIndex}
+                onMouseEnter={(event, index) => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              />
             </div>
           </div>
         </div>
         <div className="flex justify-between items-center mt-4 h-[400px]">
-        <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
+          {/* Audience Gender (Pie Chart) */}
+          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
             <h3 className="text-md text-[#ebebeb] mb-4">Audience Gender</h3>
             <div style={{ width: '100%', height: '90%' }}>
-            <Chart
-              chartType="PieChart"
-              width="100%"
-              height="95%"
-              data={genderData2}
-              options={genderChartOptions}
-            />
+              <Chart
+                chartType="PieChart"
+                width="100%"
+                height="95%"
+                data={[
+                  ["Gender", "Percentage"],
+                  ["Male", 60],
+                  ["Female", 40],
+                ]}
+                options={{
+                  slices: {
+                    0: { offset: 0.1, textStyle: { color: "#fff" }, color: "#36B4FF" },
+                    1: { offset: 0.1, textStyle: { color: "#fff" }, color: "#06B2AF" },
+                  },
+                  backgroundColor: "#22252D",
+                  legend: {
+                    textStyle: { color: "#ebebeb" },
+                    alignment: "center",
+                    position: "labeled",
+                  },
+                  animation: {
+                    startup: true,
+                    duration: 1000,
+                    easing: "out",
+                  },
+                  pieSliceText: 'percentage',
+                  is3D: true,
+                  chartArea: {
+                    width: "90%",
+                    height: "90%",
+                  },
+                }}
+              />
             </div>
-          </div> <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
-            <h3 className="text-md text-[#ebebeb] mb-4">Audience Gender</h3>
+          </div>
+
+          {/* Audience Age */}
+          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative flex flex-col">
+            <h3 className="text-md text-[#ebebeb] mb-4 h-[10%]">Audience Age</h3>
+            <div className="flex flex-col justify-center items-center gap-2 h-[90%]">
+              <span className="text-8xl mb-8">{ageGroup.icon}</span>
+              <p className="text-3xl text-white">{ageGroup.range}</p>
+              <p className="text-2xl text-gray-400">({ageGroup.label})</p>
+            </div>
           </div>
         </div>
       </div>

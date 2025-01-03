@@ -54,7 +54,7 @@ const metrics = [
 function DashboardCount() {
   const [postType, setPostType] = useState('Reel');
     return (
-      <div id="dashboard" className="mx-12 mt-8 inter-regular">
+      <div id="dashboard" className="mx-12 mt-[60px] inter-regular">
         <div className="flex items-center gap-2">
           <h2 className="text-lg text-[#ebebeb] relative pb-1">
             Dashboard
