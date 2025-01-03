@@ -23,8 +23,9 @@ function DashboardPage() {
           <DashboardNavbar setActiveButton={setActiveButton} activeButton={activeButton}/>
         </div>
         <div className='w-[calc(100%-230px)] h-full bg-[#2E3139]'>
-          <h1 className='text-2xl font-normal figtree-regular w-full py-3 text-center text-[#e6e6e6]'> Analytics Overview </h1>
+          <h1 className='text-2xl font-normal figtree-regular w-full py-3 text-center text-[#e6e6e6] mb-2'> Analytics Overview </h1>
         <DashboardActivePlatform />
+        <DashboardCount />
         </div>
       </div>
     </div>
