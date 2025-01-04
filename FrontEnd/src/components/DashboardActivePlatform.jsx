@@ -12,7 +12,7 @@ function DashboardActivePlatform() {
   const [posttype, setPostType] = useState('Reel');
 
   return (
-    <div className='flex justify-start items-center ml-12'>
+    <div className='flex justify-start items-center ml-12 mb-[60px]'>
       <div className='px-8 flex justify-start gap-[40px] bg-[#22252D] text-[#e2e2e2] rounded-[10px]'>
         {socialmedias.map((socialmedia) => (
           <button

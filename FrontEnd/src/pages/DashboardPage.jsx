@@ -12,7 +12,7 @@ function DashboardPage() {
   const handleScroll = () => {
     const sections = document.querySelectorAll('section');
     const scrollContainer = document.getElementById('analytics-overview');
-    const scrollPosition = scrollContainer.scrollTop + scrollContainer.clientHeight / 2;
+    const scrollPosition = scrollContainer.scrollTop + scrollContainer.clientHeight * 0.5;
     let currentSection = 'dashboard';
 
     sections.forEach((section) => {

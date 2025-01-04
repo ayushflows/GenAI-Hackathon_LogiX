@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Chart } from "react-google-charts";
 import { countriesData } from "../data/countriesData";
 import { PieChart } from "@mui/x-charts";
+import { motion } from "framer-motion";
+import { FaGraduationCap, FaBriefcase, FaHome, FaTree } from "react-icons/fa";
 
 const AudienceAnalytics = () => {
   const [highlightedCountry, setHighlightedCountry] = useState("IN");
@@ -31,36 +33,21 @@ const AudienceAnalytics = () => {
     resolution: "countries",
   };
 
-  const [highlightedIndex, setHighlightedIndex] = useState(null);
-
   const genderData = [
     { id: 0, value: 62.4, label: "Male" },
     { id: 1, value: 37.6, label: "Female" },
   ];
 
-  const handleMouseEnter = (index) => {
-    setHighlightedIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHighlightedIndex(null);
-  };
 
   const ageGroups = [
-    { range: "0-14 years", label: "Children", icon: "👶" },
-    { range: "15-24 years", label: "Young Adults", icon: "🧑" },
-    { range: "25-34 years", label: "Adults", icon: "👨" },
-    { range: "35-44 years", label: "Mid Adults", icon: "👩" },
-    { range: "45-54 years", label: "Older Adults", icon: "🧓" },
-    { range: "55-64 years", label: "Seniors", icon: "👴" },
-    { range: "65+ years", label: "Elders", icon: "👵" },
+    { label: "18-24 years", percentage: 35, icon: <FaGraduationCap size={24} /> }, // Graduation cap for youth/students
+    { label: "25-34 years", percentage: 45, icon: <FaBriefcase size={24} /> },    // Briefcase for working professionals
+    { label: "35-44 years", percentage: 15, icon: <FaHome size={24} /> },         // House for family and stability
+    { label: "45+ years", percentage: 5, icon: <FaTree size={24} /> },            // Tree for retirement and maturity
   ];
 
-  const ageRange = "15-24 years";
-  const ageGroup = ageGroups.find(group => group.range === ageRange);
-
   return (
-    <div id="audience" className="mx-12 mt-[60px] inter-regular mb-8">
+    <div id="audience" className="mx-12 mb-[60px] inter-regular">
       <div className="flex items-center gap-2">
         <h2 className="text-lg text-[#ebebeb] relative pb-1">
           Audience Analytics
@@ -84,7 +71,7 @@ const AudienceAnalytics = () => {
           {/* Audience Gender */}
           <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
             <h3 className="text-md text-[#ebebeb] mb-4">Audience Gender</h3>
-            <div style={{ width: '100%', height: '90%' }}>
+            <div style={{ width: "100%", height: "90%" }}>
               <PieChart
                 series={[
                   {
@@ -95,30 +82,26 @@ const AudienceAnalytics = () => {
                     cornerRadius: 5,
                     startAngle: 0,
                     endAngle: 360,
-                    highlightScope: { fade: 'global', highlight: 'item' },
-                    faded: { innerRadius: 30, additionalRadius: -30, color: 'white' },
+                    highlightScope: { fade: "global", highlight: "item" },
+                    faded: { innerRadius: 30, additionalRadius: -30, color: "white" },
                     arcLabel: (item) => `${item.label}: ${item.value}%`,
                     arcLabelMinAngle: 30,
-                    arcLabelRadius: '110%',
+                    arcLabelRadius: "110%",
                     legend: false,
                   },
                 ]}
                 sx={{
-                  '& text': { fill: 'white' },
-                  '& path': { stroke: 'gray' },
+                  "& text": { fill: "white" },
+                  "& path": { stroke: "gray" },
                 }}
                 width={500}
                 height={300}
-                highlightedIndex={highlightedIndex}
-                onMouseEnter={(event, index) => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
               />
             </div>
           </div>
         </div>
         <div className="flex justify-between items-center mt-4 h-[400px]">
-          {/* Audience Gender (Pie Chart) */}
-          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
+        <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
             <h3 className="text-md text-[#ebebeb] mb-4">Audience Gender</h3>
             <div style={{ width: '100%', height: '90%' }}>
               <Chart
@@ -152,18 +135,57 @@ const AudienceAnalytics = () => {
                     width: "90%",
                     height: "90%",
                   },
+                  tooltip: {
+                    trigger: 'selection',
+                  },
+                  enableInteractivity: true,
+                  pieSliceBorderColor: '#22252D',
+                  pieSliceTextStyle: {
+                    color: '#fff',
+                  },
+                  pieSliceHover: {
+                    highlight: {
+                      color: '#ffcc00',
+                    },
+                    fade: {
+                      color: '#22252D',
+                    },
+                  },
                 }}
               />
             </div>
           </div>
-
           {/* Audience Age */}
           <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative flex flex-col">
             <h3 className="text-md text-[#ebebeb] mb-4 h-[10%]">Audience Age</h3>
-            <div className="flex flex-col justify-center items-center gap-2 h-[90%]">
-              <span className="text-8xl mb-8">{ageGroup.icon}</span>
-              <p className="text-3xl text-white">{ageGroup.range}</p>
-              <p className="text-2xl text-gray-400">({ageGroup.label})</p>
+            <div className="flex flex-col justify-center items-center gap-2 h-[90%] w-full">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="space-y-8 w-[90%]"
+              >
+                <h3 className="text-lg font-medium text-white">Age Distribution</h3>
+                <div className="space-y-5 w-full">
+                  {ageGroups.map((group) => (
+                    <div key={group.label} className="space-y-1 w-full">
+                      <div className="flex justify-between text-sm text-white items-center">
+                        <span className="text-lg flex items-center gap-2">
+                          {group.icon} {group.label}
+                        </span>
+                        <span>{group.percentage}%</span>
+                      </div>
+                      <div className="h-2 bg-gray-600 rounded-full overflow-hidden w-full">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${group.percentage}%` }}
+                          transition={{ duration: 1 }}
+                          className="h-full bg-orange-500"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -173,4 +195,3 @@ const AudienceAnalytics = () => {
 };
 
 export default AudienceAnalytics;
-

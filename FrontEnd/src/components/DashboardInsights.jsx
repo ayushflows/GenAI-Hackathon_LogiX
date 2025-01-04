@@ -110,7 +110,7 @@ const options = {
 
 function DashboardInsights() {
   return (
-    <div id="insights" className="mx-12 mt-[60px] inter-regular mb-8">
+    <div id="insights" className="mx-12 mb-[60px] inter-regular">
       <div className="flex items-center gap-2">
         <h2 className="text-lg text-[#ebebeb] relative pb-1">
           Audience Insights

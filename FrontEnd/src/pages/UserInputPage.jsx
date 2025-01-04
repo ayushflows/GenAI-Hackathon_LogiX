@@ -10,7 +10,7 @@ function UserInputPage() {
   };
   return (
     <div className='text-2xl h-screen w-[100vw] text-white lading-page-bg relative overflow-hidden'>
-      <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:60px_60px]'></div>
+      <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div>
       <Navbar />
       <div className='abel-regular w-full text-center pt-32 relative flex flex-col items-center'>
         <h1 className='text-[5.2vw] font-bold'>Analytics Report</h1>
