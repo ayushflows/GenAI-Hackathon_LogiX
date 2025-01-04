@@ -108,8 +108,11 @@ const options = {
       borderWidth: 1,
       borderRadius: 4,
       barThickness: 20,
+      maxBarThickness: 20,
+      minBarLength: 2,
     },
   },
+  barPercentage: 0.5,
 };
 
 function DashboardInsights() {
