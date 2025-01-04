@@ -49,7 +49,7 @@ function DashboardPage() {
       <div className='w-full h-full lg:w-[calc(100vw-15px)] lg:h-[calc(100vh-15px)] bg-[#2E3139] rounded-none lg:rounded-[40px] lg:flex overflow-hidden inter-regular'>
         <div className='lg:w-[230px] lg:h-full w-full h-[60px] bg-[#22252D] flex lg:flex-col'>
           <div className='w-full h-full lg:h-[10%] text-black px-4 sm:px-8 lg:pl-6 flex justify-between items-center'>
-            <div className='flex lg:mt-6 justify-start items-center'>
+            <div className='flex lg:mt-6 justify-start items-center cursor-pointer' onClick={()=>navigate("/")}>
               <img src={logoImg} alt='LogiX Logo' className='inline-block h-[30px] lg:h-10 mr-2 filter invert contrast-200' />
               <span className='dashboard-sketch-text text-[18px] lg:text-[1.7rem]'>LogiX</span>
             </div>

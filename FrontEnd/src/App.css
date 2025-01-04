@@ -1,7 +1,13 @@
-.lading-page-bg{
-  background-color: #2b8dd4;
-  background-image: linear-gradient(0deg, #081722 0%, #0e1432 33%, #0a132f 66%, #010614 100%);
-}  
+.landing-page-bg {
+  background-color: #1D2D44;
+  background-image: linear-gradient(
+    180deg,
+    #131e2d 0%, /* Midnight blue */
+    #101b2f 40%, /* Deep charcoal */
+    #0A0A0A 100% /* Almost black */
+  );
+}
+
 
 .abel-regular {
   font-family: "Abel", serif;
@@ -11,15 +17,14 @@
   font-optical-sizing: auto;
 }
 .glassy-navbar {
-  background-color: rgba(118, 118, 118, 0.1);
+  background-color: #0d1520a2;
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(106, 106, 106, 0.2);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 .sketch-text {
   font-family: 'Caveat', cursive;
-  font-size: 1.7rem;
-  color: white;
+  color: #F97315;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 .dashboard-bg {
@@ -28,7 +33,7 @@
 }
 .dashboard-sketch-text {
   font-family: 'Caveat', cursive;
-  color: #f4a538;
+  color: #F97315;
   text-shadow: 1px 1px 2px rgba(246, 146, 53, 0.2);
 }
 .open-sans-regular {
@@ -69,6 +74,3 @@
   border-radius: 10px;
   border: 2px solid #2E3139;
 }
-
-
-
