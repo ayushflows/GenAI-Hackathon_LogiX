@@ -82,7 +82,7 @@ function UserInputPage() {
                   <span className='ml-2 text-gray-400'>▼</span>
                 </button>
                 {dropdownOpen.platform && (
-                  <div className='absolute w-[300px] bg-gray-800 rounded mt-1'>
+                  <div className='absolute w-[300px] bg-gray-900 rounded mt-1 z-10'>
                     <ul className='text-white text-lg'>
                       {['Facebook', 'Instagram', 'Twitter', 'LinkedIn'].map((item) => (
                         <li
@@ -115,7 +115,7 @@ function UserInputPage() {
                   <span className='ml-2 text-gray-400'>▼</span>
                 </button>
                 {dropdownOpen.accountName && (
-                  <div className='absolute w-[300px] bg-gray-800 rounded mt-1'>
+                  <div className='absolute w-[300px] bg-gray-900 rounded mt-1 z-10'>
                     <ul className='text-white text-lg'>
                       {['Ayush Tripathi\'s Account', 'John Doe\'s Account', 'Jane Smith\'s Account'].map((item) => (
                         <li
@@ -148,7 +148,7 @@ function UserInputPage() {
                   <span className='ml-2 text-gray-400'>▼</span>
                 </button>
                 {dropdownOpen.postType && (
-                  <div className='absolute w-[300px] bg-gray-800 rounded mt-1'>
+                  <div className='absolute w-[300px] bg-gray-900 rounded mt-1 z-10'>
                     <ul className='text-white text-lg'>
                       {['Photo', 'Reel', 'Story'].map((item) => (
                         <li
