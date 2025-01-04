@@ -54,7 +54,7 @@ const metrics = [
 function DashboardCount() {
   const [postType, setPostType] = useState('Reel');
     return (
-      <div id="dashboard" className="mx-12 mb-[90px] inter-regular">
+      <div id="dashboard" className="mx-2 lg:mx-6 xl:mx-12 mb-[40px] md:mb-[90px] inter-regular">
         <div className="flex items-center gap-2">
           <h2 className="text-lg text-[#ebebeb] relative pb-1">
             Dashboard
@@ -62,11 +62,11 @@ function DashboardCount() {
           </h2>
         </div>
         <p className='text-[#c5c5c5] mt-3'>On an average your each {postType} has: </p>
-        <div className="w-full flex justify-between items-center mt-4">
+        <div className="w-full flex flex-wrap justify-between items-center mt-4">
           {metrics.map((metric) => (
             <div
               key={metric.id}
-              className={`w-[23%] h-[120px] bg-gradient-to-bl ${metric.gradient} ${metric.border} rounded-xl flex items-center justify-between p-4 border-2 shadow-lg`}
+              className={`w-[49%] md:w-[23%] h-[100px] md:h-[120px] bg-gradient-to-bl ${metric.gradient} ${metric.border} rounded-xl flex items-center justify-between p-4 md:p-2 lg:p-4 border-2 shadow-lg mb-4`}
             >
               <div className="text-left">
                 <p className="text-4xl font-bold text-white">{metric.value}</p>

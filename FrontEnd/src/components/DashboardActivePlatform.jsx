@@ -12,28 +12,28 @@ function DashboardActivePlatform() {
   const [posttype, setPostType] = useState('Reel');
 
   return (
-    <div className='flex justify-start items-center ml-12 mb-[90px]'>
-      <div className='px-8 flex justify-start gap-[40px] bg-[#22252D] text-[#e2e2e2] rounded-[10px]'>
+    <div className='flex lg:flex-col xl:flex-row md:flex-row flex-col md:mx-auto md:w-[90%] md:justify-between lg:justify-start items-center lg:ml-12 mb-[40px] md:mb-[90px]'>
+      <div className='md:px-4 lg:px-8 w-[98%] sm:w-[90%] md:w-auto flex justify-between sm:justify-evenly md:justify-start md:gap-[15px] lg:gap-[40px] bg-[#22252D] text-[#e2e2e2] rounded-[10px]'>
         {socialmedias.map((socialmedia) => (
           <button
             key={socialmedia.id}
             onClick={() => setSelectedPlatform(socialmedia.id)}
-            className={`relative flex items-center justify-center px-2 py-[10px] gap-2 ${selectedPlatform === socialmedia.id ? 'text-white' : 'text-gray-400 opacity-50'}`}
+            className={`relative flex items-center justify-center px-2 py-[10px] gap-1 md:gap-2 ${selectedPlatform === socialmedia.id ? 'text-white' : 'text-gray-400 opacity-50'}`}
             disabled={selectedPlatform !== null && selectedPlatform !== socialmedia.id}
           >
             {React.cloneElement(socialmedia.icon, {
               fill: selectedPlatform === socialmedia.id ? 'white' : 'gray',
             })}
-            {socialmedia.name}
+            <span className='text-[13px] md:text-lg'>{socialmedia.name}</span>
             {selectedPlatform === socialmedia.id && (
               <div className="absolute bottom-[1px] left-0 right-0 h-[3px] bg-orange-500 rounded-full"></div>
             )}
           </button>
         ))}
       </div>
-      <div className={`ml-10 flex items-center gap-2 justify-center bg-[#22252D] py-2 px-4 rounded-lg shadow-lg`}>
-        <p className='text-md text-gray-300'>Post Type: </p>
-        <p className='text-md text-white'> {posttype}</p>
+      <div className={`mt-4 md:mt-0 lg:mt-4 xl:mt-0 md:ml-10 flex items-center gap-2 justify-center bg-[#22252D] py-2 px-4 rounded-lg shadow-lg`}>
+        <p className='text-[14px] md:text-md text-gray-300'>Post Type: </p>
+        <p className='text-[14px] md:text-md text-white'> {posttype}</p>
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ const AudienceAnalytics = () => {
   const highestCountry = baseData.reduce((prev, current) => (prev[1] > current[1]) ? prev : current)[0];
 
   return (
-    <div id="audience" className="mx-12 mb-[90px] inter-regular">
+    <div id="audience" className="mx-2 lg:mx-6 xl:mx-12 mb-[40px] md:mb-[90px] inter-regular">
       <div className="flex items-center gap-2">
         <h2 className="text-lg text-[#ebebeb] relative pb-1">
           Audience Analytics
@@ -57,13 +57,13 @@ const AudienceAnalytics = () => {
         </h2>
       </div>
       <div className="mt-6">
-        <div className="flex justify-between items-center mt-4 h-[400px]">
+        <div className="flex flex-col md:flex-row flex-wrap xl:flex-nowrap gap-6 justify-between items-center mt-4 xl:h-[400px]">
 
           {/* Audience Age */}
-          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[32.5%] h-full relative flex flex-col">
+          <div className="bg-[#22252D] p-3 sm:p-4 rounded-lg shadow-lg w-full h-[300px] md:w-[48%] xl:w-[32.5%] xl:h-full relative flex flex-col">
             <div className="relative w-full h-[24%]">
               <h3 className="text-md text-[#ebebeb] mb-1">Audience Age</h3>
-              <p className="text-sm text-[#c5c5c5] mb-4">The distribution graph shows the percentage of your audience in different age groups.</p>
+              <p className="text-[12px] lg:text-sm text-[#c5c5c5] mb-4">The distribution graph shows the percentage of your audience in different age groups.</p>
             </div>
             <div className="flex flex-col justify-center items-center gap-2 h-[76%] w-full">
               <motion.div
@@ -71,10 +71,10 @@ const AudienceAnalytics = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="space-y-8 w-[90%]"
               >
-                <div className="space-y-5 w-full">
+                <div className="space-y-3 lg:space-y-5 w-full">
                   {ageGroups.map((group) => (
                     <div key={group.label} className="space-y-1 w-full">
-                      <div className="flex justify-between text-sm text-white items-center">
+                      <div className="flex justify-between text-[12px] sm:text-sm text-white items-center">
                         <span className="flex items-center gap-2">
                           {group.icon} {group.label}
                         </span>
@@ -96,10 +96,10 @@ const AudienceAnalytics = () => {
           </div>
 
           {/* Audience Gender */}
-          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[32.5%] h-full relative">
+          <div className="bg-[#22252D] p-3 sm:p-4 rounded-lg shadow-lg w-full h-[300px] md:w-[48%] xl:w-[32.5%] xl:h-full relative">
             <div className="relative w-full h-[17%]">
               <h3 className="text-md text-[#ebebeb] mb-1">Audience Gender</h3>
-              <p className="text-sm text-[#c5c5c5] mb-4">Mostly your post is viewed by {highestGender}.</p>
+              <p className="text-[12px] lg:text-sm text-[#c5c5c5] mb-4">Mostly your post is viewed by {highestGender}.</p>
             </div>
             <div className="relative w-full h-[83%]">
               <PieChart
@@ -136,10 +136,10 @@ const AudienceAnalytics = () => {
           </div>
 
           {/* Audience Location */}
-          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[32.5%] h-full">
+          <div className="bg-[#22252D] p-3 sm:p-4 rounded-lg shadow-lg w-full h-[300px] md:w-[48%] xl:w-[32.5%] xl:h-full">
             <div className="relative w-full h-[17%]">
               <h3 className="text-md text-[#ebebeb] mb-1">Audience Location</h3>
-              <p className="text-sm text-[#c5c5c5] mb-4">Your audience is mostly located in {highestCountry}.</p>
+              <p className="text-[12px] lg:text-sm text-[#c5c5c5] mb-4">Your audience is mostly located in {highestCountry}.</p>
             </div>
             <div className="relative w-full h-[83%]">
             <Chart

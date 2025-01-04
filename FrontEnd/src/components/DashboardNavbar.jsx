@@ -42,7 +42,7 @@ function DashboardNavbar({ setActiveButton, activeButton, onButtonClick }) {
   ];
 
   return (
-    <div className="w-full h-[45%] flex flex-col justify-center items-center gap-1 inter-regular">
+    <div className="w-full h-[45%] hidden lg:flex flex-col justify-center items-center gap-1 inter-regular">
       {menuItems.map((item) => (
         <button
           key={item.key}
