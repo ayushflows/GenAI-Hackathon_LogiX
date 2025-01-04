@@ -14,15 +14,15 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const data = {
   labels: [
-    "Weekdays - Morning",
-    "Weekdays - Afternoon",
-    "Weekdays - Evening",
-    "Weekdays - Night",
+    "Morning",
+    "Afternoon",
+    "Evening",
+    "Night",
     "",
-    "Weekends - Morning",
-    "Weekends - Afternoon",
-    "Weekends - Evening",
-    "Weekends - Night",
+    "Morning",
+    "Afternoon",
+    "Evening",
+    "Night",
   ],
   datasets: [
     {
@@ -67,7 +67,6 @@ const options = {
     x: {
       title: {
         display: true,
-        text: "Timestamp",
         color: "#ebebeb",
         font: {
           size: 16,
@@ -124,9 +123,19 @@ function DashboardInsights() {
           <span className="absolute bottom-[-4px] left-0 w-full h-[4px] bg-orange-500 rounded-full glow-bar"></span>
         </h2>
       </div>
-      <div className="mt-6 w-full flex items-center justify-center">
-        <div className="bg-[#22252D] py-4 px-12 rounded-lg shadow-lg w-full h-[500px]">
-          <Bar data={data} options={options} />
+      <div className="mt-6 w-full">
+        <div className="bg-[#22252D] py-4 px-12 rounded-lg shadow-lg ">
+          <div className="w-full h-[500px]">
+            <Bar data={data} options={options} />
+          </div>
+          <div className="w-full pl-28 pr-8 h-[50px] py-2 px-4 flex justify-between items-center translate-y-[-20px]">
+            <div className="w-[40%] h-full text-center text-gray-200 border-t-2">
+              <p>Weekdays</p>
+            </div>
+            <div className="w-[40%] h-full text-center text-gray-200 border-t-2">
+              <p>Weekends</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
