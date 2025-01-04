@@ -38,13 +38,15 @@ const AudienceAnalytics = () => {
     { id: 1, value: 37.6, label: "Female" },
   ];
 
-
   const ageGroups = [
-    { label: "18-24 years", percentage: 35, icon: <FaGraduationCap size={24} /> }, // Graduation cap for youth/students
-    { label: "25-34 years", percentage: 45, icon: <FaBriefcase size={24} /> },    // Briefcase for working professionals
-    { label: "35-44 years", percentage: 15, icon: <FaHome size={24} /> },         // House for family and stability
-    { label: "45+ years", percentage: 5, icon: <FaTree size={24} /> },            // Tree for retirement and maturity
+    { label: "18-24 years", percentage: 35, icon: <FaGraduationCap size={24} /> },
+    { label: "25-34 years", percentage: 45, icon: <FaBriefcase size={24} /> },
+    { label: "35-44 years", percentage: 15, icon: <FaHome size={24} /> },
+    { label: "45+ years", percentage: 5, icon: <FaTree size={24} /> },
   ];
+
+  const highestGender = genderData.reduce((prev, current) => (prev.value > current.value) ? prev : current).label;
+  const highestCountry = baseData.reduce((prev, current) => (prev[1] > current[1]) ? prev : current)[0];
 
   return (
     <div id="audience" className="mx-12 mb-[60px] inter-regular">
@@ -56,120 +58,24 @@ const AudienceAnalytics = () => {
       </div>
       <div className="mt-6">
         <div className="flex justify-between items-center mt-4 h-[400px]">
-          {/* Audience Location */}
-          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full">
-            <h3 className="text-md text-[#ebebeb] mb-4">Audience Location</h3>
-            <Chart
-              chartType="GeoChart"
-              width="100%"
-              height="95%"
-              data={baseData}
-              options={chartOptions}
-            />
-          </div>
 
-          {/* Audience Gender */}
-          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
-            <h3 className="text-md text-[#ebebeb] mb-4">Audience Gender</h3>
-            <div style={{ width: "100%", height: "90%" }}>
-              <PieChart
-                series={[
-                  {
-                    data: genderData,
-                    innerRadius: 30,
-                    outerRadius: 100,
-                    paddingAngle: 5,
-                    cornerRadius: 5,
-                    startAngle: 0,
-                    endAngle: 360,
-                    highlightScope: { fade: "global", highlight: "item" },
-                    faded: { innerRadius: 30, additionalRadius: -30, color: "white" },
-                    arcLabel: (item) => `${item.label}: ${item.value}%`,
-                    arcLabelMinAngle: 30,
-                    arcLabelRadius: "110%",
-                    legend: false,
-                  },
-                ]}
-                sx={{
-                  "& text": { fill: "white" },
-                  "& path": { stroke: "gray" },
-                }}
-                width={500}
-                height={300}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-between items-center mt-4 h-[400px]">
-        <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative">
-            <h3 className="text-md text-[#ebebeb] mb-4">Audience Gender</h3>
-            <div style={{ width: '100%', height: '90%' }}>
-              <Chart
-                chartType="PieChart"
-                width="100%"
-                height="95%"
-                data={[
-                  ["Gender", "Percentage"],
-                  ["Male", 60],
-                  ["Female", 40],
-                ]}
-                options={{
-                  slices: {
-                    0: { offset: 0.1, textStyle: { color: "#fff" }, color: "#36B4FF" },
-                    1: { offset: 0.1, textStyle: { color: "#fff" }, color: "#06B2AF" },
-                  },
-                  backgroundColor: "#22252D",
-                  legend: {
-                    textStyle: { color: "#ebebeb" },
-                    alignment: "center",
-                    position: "labeled",
-                  },
-                  animation: {
-                    startup: true,
-                    duration: 1000,
-                    easing: "out",
-                  },
-                  pieSliceText: 'percentage',
-                  is3D: true,
-                  chartArea: {
-                    width: "90%",
-                    height: "90%",
-                  },
-                  tooltip: {
-                    trigger: 'selection',
-                  },
-                  enableInteractivity: true,
-                  pieSliceBorderColor: '#22252D',
-                  pieSliceTextStyle: {
-                    color: '#fff',
-                  },
-                  pieSliceHover: {
-                    highlight: {
-                      color: '#ffcc00',
-                    },
-                    fade: {
-                      color: '#22252D',
-                    },
-                  },
-                }}
-              />
-            </div>
-          </div>
           {/* Audience Age */}
-          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[48%] h-full relative flex flex-col">
-            <h3 className="text-md text-[#ebebeb] mb-4 h-[10%]">Audience Age</h3>
-            <div className="flex flex-col justify-center items-center gap-2 h-[90%] w-full">
+          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[32.5%] h-full relative flex flex-col">
+            <div className="relative w-full h-[24%]">
+              <h3 className="text-md text-[#ebebeb] mb-1">Audience Age</h3>
+              <p className="text-sm text-[#c5c5c5] mb-4">The distribution graph shows the percentage of your audience in different age groups.</p>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-2 h-[76%] w-full">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="space-y-8 w-[90%]"
               >
-                <h3 className="text-lg font-medium text-white">Age Distribution</h3>
                 <div className="space-y-5 w-full">
                   {ageGroups.map((group) => (
                     <div key={group.label} className="space-y-1 w-full">
                       <div className="flex justify-between text-sm text-white items-center">
-                        <span className="text-lg flex items-center gap-2">
+                        <span className="flex items-center gap-2">
                           {group.icon} {group.label}
                         </span>
                         <span>{group.percentage}%</span>
@@ -188,6 +94,64 @@ const AudienceAnalytics = () => {
               </motion.div>
             </div>
           </div>
+
+          {/* Audience Gender */}
+          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[32.5%] h-full relative">
+            <div className="relative w-full h-[17%]">
+              <h3 className="text-md text-[#ebebeb] mb-1">Audience Gender</h3>
+              <p className="text-sm text-[#c5c5c5] mb-4">Mostly your post is viewed by {highestGender}.</p>
+            </div>
+            <div className="relative w-full h-[83%]">
+              <PieChart
+                series={[
+                  {
+                    data: genderData,
+                    innerRadius: "30%",
+                    outerRadius: "70%",
+                    paddingAngle: 5,
+                    cornerRadius: 5,
+                    startAngle: 0,
+                    endAngle: 360,
+                    highlightScope: { fade: "global", highlight: "item" },
+                    faded: { innerRadius: 30, additionalRadius: -30, color: "white" },
+                    arcLabel: (item) => `${item.label}: ${item.value}%`,
+                    arcLabelMinAngle: 30,
+                    arcLabelRadius: "60%",
+                    legend: false,
+                  },
+                ]}
+                sx={{
+                  "& text": { fill: "white" },
+                  "& path": { stroke: "gray" },
+                }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Audience Location */}
+          <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[32.5%] h-full">
+            <div className="relative w-full h-[17%]">
+              <h3 className="text-md text-[#ebebeb] mb-1">Audience Location</h3>
+              <p className="text-sm text-[#c5c5c5] mb-4">Your audience is mostly located in: {highestCountry}.</p>
+            </div>
+            <div className="relative w-full h-[83%]">
+            <Chart
+              chartType="GeoChart"
+              width="100%"
+              height="100%"
+              data={baseData}
+              options={chartOptions}
+            />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
