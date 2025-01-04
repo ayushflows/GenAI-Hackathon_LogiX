@@ -49,7 +49,7 @@ const AudienceAnalytics = () => {
   const highestCountry = baseData.reduce((prev, current) => (prev[1] > current[1]) ? prev : current)[0];
 
   return (
-    <div id="audience" className="mx-12 mb-[60px] inter-regular">
+    <div id="audience" className="mx-12 mb-[90px] inter-regular">
       <div className="flex items-center gap-2">
         <h2 className="text-lg text-[#ebebeb] relative pb-1">
           Audience Analytics
@@ -139,7 +139,7 @@ const AudienceAnalytics = () => {
           <div className="bg-[#22252D] p-4 rounded-lg shadow-lg w-[32.5%] h-full">
             <div className="relative w-full h-[17%]">
               <h3 className="text-md text-[#ebebeb] mb-1">Audience Location</h3>
-              <p className="text-sm text-[#c5c5c5] mb-4">Your audience is mostly located in: {highestCountry}.</p>
+              <p className="text-sm text-[#c5c5c5] mb-4">Your audience is mostly located in {highestCountry}.</p>
             </div>
             <div className="relative w-full h-[83%]">
             <Chart
