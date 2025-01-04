@@ -12,13 +12,12 @@ function DashboardPage() {
   const handleScroll = () => {
     const sections = document.querySelectorAll('section');
     const scrollContainer = document.getElementById('analytics-overview');
-    const scrollPosition = scrollContainer.scrollTop + scrollContainer.clientHeight * 0.5;
+    const scrollPosition = scrollContainer.scrollTop;
     let currentSection = 'dashboard';
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      if (scrollPosition >= sectionTop - 70 ) {
         currentSection = section.getAttribute('id');
       }
     });
