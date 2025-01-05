@@ -108,7 +108,18 @@ function LandingPage() {
 </motion.button>
 
       </div>
+      <motion.div
+        initial={{ opacity: 0}}
+  animate={{
+    opacity: animateText ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.4,
+    ease: 'easeInOut',
+    delay: 1.2,
+  }}>
       <DashBoardImgScroll />
+      </motion.div>
     </div>
     <Footer />
     </>

@@ -8,7 +8,7 @@ function Footer() {
   return (
 <div class="w-full flex items-center justify-center bg-black">
         <div class="md:w-[90%] w-full px-4 text-white flex flex-col">
-            <div class="w-full text-7xl font-bold pt-10">
+            <div class="w-full text-4xl sm:text-5xl md:text-7xl font-bold pt-10">
                 <h1 class="w-full md:w-[90%] pt-10">
                 <span className='capitalize text-slate-300'>User Analytics </span></h1>
             </div>
@@ -33,7 +33,7 @@ function Footer() {
             <div class="flex flex-col">
                 <div class="flex mt-12 mb-6 px-[15px] md:px-1 flex-row items-center justify-between">
                     <div class="">
-                    <div className="logo w-[65px] h-[65px] rounded-full overflow-hidden">
+                    <div className="logo w-[40px] h-[40px] md:w-[65px] md:h-[65px] rounded-full overflow-hidden">
               <img
                 src={logoImg}
                 alt="logo"
