@@ -1,0 +1,83 @@
+let data = [
+  {
+    "Message" : "You have to do social media analytics"
+  },
+  {
+    "socialMediaAccount": "Instagram",
+    "postType": "Reel",
+    "time": "2025-01-02T10:00:00Z",
+    "timePeriod": "morning",
+    "likes": 1200,
+    "comments": 150,
+    "shares": 75,
+    "impressions": 5000,
+    "reach": 4500,
+    "engagement": 1425,
+    "audienceAge": 25,
+    "ageGroup": "youth",
+    "gender": "female",
+    "location": "New York",
+    "country": "USA",
+    "sentiment": "positive",
+    "userId": "user123"
+  },
+  {
+    "socialMediaAccount": "Twitter",
+    "postType": "static image",
+    "time": "2025-01-02T20:30:00Z",
+    "timePeriod": "evening",
+    "likes": 300,
+    "comments": 45,
+    "shares": 20,
+    "impressions": 2000,
+    "reach": 1800,
+    "engagement": 365,
+    "audienceAge": 35,
+    "ageGroup": "youth",
+    "gender": "male",
+    "location": "London",
+    "country": "UK",
+    "sentiment": "neutral",
+    "userId": "user456"
+  },
+  {
+    "socialMediaAccount": "Instagram",
+    "postType": "Reel",
+    "time": "2025-01-02T10:00:00Z",
+    "timePeriod": "morning",
+    "likes": 1200,
+    "comments": 150,
+    "shares": 75,
+    "impressions": 5000,
+    "reach": 4500,
+    "engagement": 1425,
+    "audienceAge": 25,
+    "ageGroup": "youth",
+    "gender": "female",
+    "location": "New York",
+    "country": "USA",
+    "sentiment": "positive",
+    "userId": "user001"
+  },
+  {
+    "socialMediaAccount": "Facebook",
+    "postType": "post",
+    "time": "2025-01-02T15:00:00Z",
+    "timePeriod": "afternoon",
+    "likes": 800,
+    "comments": 120,
+    "shares": 50,
+    "impressions": 3500,
+    "reach": 3000,
+    "engagement": 970,
+    "audienceAge": 30,
+    "ageGroup": "youth",
+    "gender": "male",
+    "location": "Los Angeles",
+    "country": "USA",
+    "sentiment": "neutral",
+    "userId": "user002"
+  }
+];
+
+module.exports = data;
