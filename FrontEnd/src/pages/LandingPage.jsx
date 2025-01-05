@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
+import { DashBoardImgScroll } from '../components/dashboardimg-scroll';
+import Footer from '../components/footer';
 
 function LandingPage() {
   const [animateText, setAnimateText] = useState(false);
@@ -19,7 +21,8 @@ function LandingPage() {
   };
 
   return (
-    <div className='text-2xl h-screen w-[100vw] text-[#E5E5E5] landing-page-bg relative overflow-hidden'>
+    <>
+    <div className='text-2xl text-[#E5E5E5] landing-page-bg landing-page-scrollbar relative overflow-x-hidden overflow-y-auto'>
       <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div>
       <Navbar />
       <div className='abel-regular w-full text-center pt-32 relative'>
@@ -105,7 +108,10 @@ function LandingPage() {
 </motion.button>
 
       </div>
+      <DashBoardImgScroll />
     </div>
+    <Footer />
+    </>
   );
 }
 

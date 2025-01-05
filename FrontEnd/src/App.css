@@ -2,8 +2,8 @@
   background-color: #1D2D44;
   background-image: linear-gradient(
     180deg,
-    #131e2d 0%, /* Midnight blue */
-    #101b2f 40%, /* Deep charcoal */
+    #080c13 0%, /* Midnight blue */
+    #070b13 40%, /* Deep charcoal */
     #0A0A0A 100% /* Almost black */
   );
 }
