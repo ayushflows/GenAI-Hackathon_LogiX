@@ -129,6 +129,7 @@ function UserInputPage() {
 
   return (
     <div className='text-2xl h-screen w-[100vw] text-white landing-page-bg relative overflow-hidden'>
+      <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div>
     <Loader loadingStates={loadingStates} loading={loading} duration={1300} />
       {accountLoading && (
         <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
