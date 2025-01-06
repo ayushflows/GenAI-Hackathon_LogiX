@@ -57,6 +57,13 @@ let prompt = `You are provided with the social media data of a particular user. 
   ]
 }`
 
+let globalDataResults = [];
+
+app.get("/", (req, res) => {
+    res.send("hello word");
+})
+
+
 
 app.post('/socialAccount', (req, res) => {
     const { socialAccount } = req.body;
@@ -64,7 +71,7 @@ app.post('/socialAccount', (req, res) => {
         try {
             const results = await db
                 .collection('final_dataset')
-                .distinct('User', { platform: socialAccount }); // Use distinct to get unique users
+                .distinct('User', { platform: socialAccount });
             res.json({ data: results });
         } catch (error) {
             console.error('Error during query:', error);
@@ -74,12 +81,10 @@ app.post('/socialAccount', (req, res) => {
     fetchData();
 });
 
-// Declare a global variable
-let globalDataResults = []; // Initialize as an empty array
 
 app.post('/data', (req, res) => {
-    const { socialAccount, User, postType } = req.body;
-    console.log(socialAccount, User, postType);
+    const { socialAccount, user, postType } = req.body;
+    console.log(socialAccount, user, postType);
 
     let fetchData = async () => {
         try {
@@ -96,8 +101,6 @@ app.post('/data', (req, res) => {
                     }
                 );
             const Data_results = await cursor.toArray();
-
-            // Update the global variable
             globalDataResults = Data_results;
 
             res.json({ data: Data_results });
@@ -125,7 +128,35 @@ app.post("/fetchdata", async (req, res) => {
 });
 
 
-// Start the server
+app.post('/dataAnalysis', async (req, res) => {
+    const { socialAccount, user, postType } = req.body;
+
+    try {
+        const cursor = await db.collection('final_dataset').find(
+            {
+                platform: socialAccount,
+                User: user,
+                post_type: postType,
+            },
+            {
+                projection: { _id: 0 },
+            }
+        );
+        const Data_results = await cursor.toArray();
+        globalDataResults = Data_results;
+        const globalDataLang = JSON.stringify(Data_results, null, 2);
+        const inputValue = `${globalDataLang}\n${prompt}`;
+        const result = await main(inputValue);
+        const parsedResult = JSON.parse(result.message.text);
+        res.json(parsedResult);
+    } catch (error) {
+        console.error('Error during data analysis:', error.message);
+        res.status(500).json({ error: 'An error occurred while processing your request.' });
+    }
+});
+
+
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
