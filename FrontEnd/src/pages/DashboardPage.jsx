@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import logoImg from "../assets/logix_logo.png";
 import DashboardCount from '../components/DashboardCount';
 import DashboardNavbar from '../components/DashboardNavbar';
 import AudienceAnalytics from '../components/AudienceAnalytics';
 import DashboardActivePlatform from '../components/DashboardActivePlatform';
 import DashboardInsights from '../components/DashboardInsights';
-import { useNavigate } from 'react-router-dom';
 
 function DashboardPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeButton, setActiveButton] = useState('dashboard');
+  const [analyzedData, setAnalyzedData] = useState(location.state?.analyzedData || null);
+
+  useEffect(()=>{
+    console.log('data recieved is:',analyzedData);
+  },[analyzedData])
 
   const handleScroll = () => {
     const sections = document.querySelectorAll('section');
@@ -62,16 +68,22 @@ function DashboardPage() {
         </div>
         <div id='analytics-overview' className='lg:w-[calc(100%-230px)] lg:h-full w-full h-[calc(100vh-60px)] bg-[#2E3139] overflow-y-auto custom-scrollbar'>
           <h1 className='text-2xl font-normal figtree-regular w-full py-3 text-center text-[#e6e6e6] mb-2'> Analytics Overview </h1>
-            <DashboardActivePlatform />
-          <section id="dashboard">
-            <DashboardCount />
-          </section>
-          <section id="audience">
-            <AudienceAnalytics />
-          </section>
-          <section id="insights">
-            <DashboardInsights />
-          </section>
+          {analyzedData ? (
+            <>
+              <DashboardActivePlatform data={analyzedData.activePlatform} />
+              <section id="dashboard">
+                <DashboardCount data={analyzedData.dashboardCount} />
+              </section>
+              <section id="audience">
+                <AudienceAnalytics data={analyzedData.audienceAnalytics} />
+              </section>
+              <section id="insights">
+                <DashboardInsights data={analyzedData.dashboardInsights} />
+              </section>
+            </>
+          ) : (
+            <p className='text-center text-[#e6e6e6]'>No data available</p>
+          )}
         </div>
       </div>
     </div>
