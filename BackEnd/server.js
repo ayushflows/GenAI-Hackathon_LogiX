@@ -11,44 +11,52 @@ const main = require('./langflow');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-let prompt = `"This is the social media data of a particular user you have to analyze it and provide the social media analysis in this format.{
+let prompt = `You are provided with the social media data of a particular user. Analyze the data and provide the analysis strictly in the following JSON format, Do not write comments and thin irrelevent or extra , just provide the vlaues of filed given, strictly:
 
-
-username:
-platform:
-Type:
-likes:
-comments:
-shares:
-reach: 
-country Code: 
-male Percentage:  
-female Percentage:
-audience Age:
-- 18 - 24:
-- 25 - 34:
-- 35 - 44:
-- 45 +  :
-
-reach Time Stamp Graph:
-weekday -
-    morning:
-afternoon:
-evening:
-night:
-weekend -
-    morning:
-afternoon:
-evening:
-night: 
-sentimental Analysis:   
-conversion Rate:
-insight1:
-insight2:
-insight3:
-insight4:
-insight5:
+{
+  "username": "",
+  "platform": "",
+  "type": "",
+  "likes": ,
+  "comments": ,
+  "shares": ,
+  "reach": ,
+  "country_code": "",
+  "gender_distribution": {
+    "male_percentage": ,
+    "female_percentage": 
+  },
+  "audience_age": {
+    "18-24": ,
+    "25-34": ,
+    "35-44": ,
+    "45+": 
+  },
+  "reach_time_stamp_graph": {
+    "weekday": {
+      "morning": ,
+      "afternoon": ,
+      "evening": ,
+      "night": 
+    },
+    "weekend": {
+      "morning": ,
+      "afternoon": ,
+      "evening": ,
+      "night": 
+    }
+  },
+    "Sentimental Analysis" : (likes+reach+shares/totalreach, convert this in percentage), 
+  "conversion_rate": (reach/impression, convert this in percentage),
+  "insights": [
+    "insight1",
+    "insight2",
+    "insight3",
+    "insight4",
+    "insight5"
+  ]
 }`
+
 
 app.post('/socialAccount', (req, res) => {
     const { socialAccount } = req.body;
@@ -105,13 +113,11 @@ app.post('/data', (req, res) => {
 
 app.post("/fetchdata", async (req, res) => {
     try {
-        
-        globalDataLang = JSON.stringify(globalDataResults, null, 2); 
+        globalDataLang = JSON.stringify(globalDataResults, null, 2);
         const inputValue = `${globalDataLang}\n${prompt}`;
         const result = await main(inputValue);
-
-        console.log("Analysis Result:", result);
-        res.json(result);
+        const parsedResult = JSON.parse(result.message.text);
+        res.json(parsedResult);
     } catch (error) {
         console.error("Error fetching data:", error.message);
         res.status(500).json({ error: "An error occurred while fetching data." });

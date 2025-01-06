@@ -68,7 +68,6 @@ class LangflowClient {
         }
     }
 }
-
 async function main(inputValue, inputType = 'chat', outputType = 'chat', stream = false) {
     const flowIdOrName = '029fd06e-d234-43ab-bbec-73a582ff260c';
     const langflowId = '0258b77c-c5da-4ae1-96f7-9a0846f44c5e';
@@ -83,7 +82,8 @@ async function main(inputValue, inputType = 'chat', outputType = 'chat', stream 
             "ChatOutput-OYTVS": {},
             "GroqModel-qhbFp": {}
         };
-        response = await langflowClient.runFlow(
+
+        const response = await langflowClient.runFlow(
             flowIdOrName,
             langflowId,
             inputValue,
@@ -95,12 +95,12 @@ async function main(inputValue, inputType = 'chat', outputType = 'chat', stream 
             (message) => console.log("Stream Closed:", message), // onClose
             (error) => console.log("Stream Error:", error) // onError
         );
+
         if (!stream && response && response.outputs) {
             const flowOutputs = response.outputs[0];
             const firstComponentOutputs = flowOutputs.outputs[0];
             const output = firstComponentOutputs.outputs.message;
-
-            console.log("Final Output:", output.message.text);
+            return output;
         }
     } catch (error) {
         console.error('Main Error', error.message);
