@@ -112,9 +112,9 @@ app.post('/dataAnalysis', async (req, res) => {
         );
         const Data_results = await cursor.toArray();
         globalDataResults = Data_results;
-        const globalDataLang = JSON.stringify(Data_results, null, 2);
-        const inputValue = `${globalDataLang}\n${prompt}`;
-        const result = await main(inputValue);
+        const globalDataLang = JSON.stringify(Data_results);
+        const result = await main(globalDataLang);
+        console.log(result.message.text)
         const parsedResult = JSON.parse(result.message.text);
         res.json(parsedResult);
     } catch (error) {
