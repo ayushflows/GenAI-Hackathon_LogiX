@@ -88,6 +88,7 @@ app.post("/fetchdata", async (req, res) => {
     
         globalDataLang = JSON.stringify(globalDataResults);
         const result = await main(globalDataLang);
+        console.log(result.message.text)
         const parsedResult = JSON.parse(result.message.text); 
         res.json(parsedResult);
 });
