@@ -101,8 +101,7 @@ Strictly follow this format:
     { name: "Iceland", code: "IS" },
     { name: "Luxembourg", code: "LU" },
     { name: "Malta", code: "MT" },
-    { name: "Cyprus", code: "CY" }, do not provide any other country code except these, provide the top first country from this list),",
-",
+    { name: "Cyprus", code: "CY" }, do not provide any other country code except these, provide the top first country from this list),
   "gender_distribution": {
     "male_percentage": ,
     "female_percentage": 
@@ -185,7 +184,7 @@ app.post('/data', (req, res) => {
                 .find(
                     {
                         platform: socialAccount,
-                        User: User,
+                        User: user,
                         post_type: postType,
                     },
                     {
