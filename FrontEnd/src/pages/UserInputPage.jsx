@@ -2,19 +2,41 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { analyzeData, fetchDistinctUsers } from '../api/api';
+import { MultiStepLoader as Loader } from "../components/ui/multi-step-loader";
+import { IconSquareRoundedX } from "@tabler/icons-react";
+const loadingStates = [
+  {
+    text: "Filtering the Accounts Data",
+  },
+  {
+    text: "Parsing the Information",
+  },
+  {
+    text: "Analyzing the Data",
+  },
+  {
+    text: "Generating the Report",
+  },
+  {
+    text: "Sending the Report",
+  },
+];
 
 function UserInputPage() {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [platform, setPlatform] = useState('');
   const [accountName, setAccountName] = useState('');
   const [postType, setPostType] = useState('');
-  const [accountOptions, setAccountOptions] = useState([]); // Store fetched users
+  const [accountOptions, setAccountOptions] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState({
     platform: false,
     accountName: false,
     postType: false,
   });
+  const [accountLoading, setAccountLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [accountError, setAccountError] = useState('');
 
   const platformDropdownRef = useRef(null);
   const accountNameDropdownRef = useRef(null);
@@ -52,11 +74,23 @@ function UserInputPage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (error || accountError) {
+      const timer = setTimeout(() => {
+        setError('');
+        setAccountError('');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error, accountError]);
+
   const handlePlatformSelect = (selectedPlatform) => {
     setPlatform(selectedPlatform);
     setAccountName('');
     setAccountOptions([]);
     setDropdownOpen((prev) => ({ ...prev, platform: false }));
+    setAccountLoading(true);
+    setAccountError('');
     console.log("fetching accounts");
     fetchDistinctUsers(selectedPlatform)
       .then((users) => {
@@ -65,11 +99,17 @@ function UserInputPage() {
       })
       .catch((error) => {
         console.error('Error:', error);
+        setAccountError('Failed to fetch account details. Please try again.');
+      })
+      .finally(() => {
+        setAccountLoading(false);
       });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
     const analyzingData = {socialAccount: platform, user:accountName, postType: postType};
     console.log("analyzing...")
     analyzeData(analyzingData)
@@ -79,19 +119,76 @@ function UserInputPage() {
       })
       .catch((error) => {
         console.error('Error:', error);
+        setError('Failed to generate report. Please try again.');
+      }).finally(() => {
+        setLoading(false);
       });
   };
 
 
   return (
     <div className='text-2xl h-screen w-[100vw] text-white landing-page-bg relative overflow-hidden'>
-      <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div>
+    <Loader loadingStates={loadingStates} loading={loading} duration={1300} />
+      {accountLoading && (
+        <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
+          <div className='loader'></div>
+        </div>
+      )}
+      {/* Loader CSS */}
+      <style jsx>{`
+        .loader {
+          border: 8px solid #f3f3f3;
+          border-top: 8px solid #F6A01E;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .error-box {
+          position: absolute;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #ff4d4d;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          animation: fadeIn 0.5s ease-in-out;
+          z-index: 1000;
+        }
+        .error-box .close-btn {
+          margin-left: 10px;
+          cursor: pointer;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
       <Navbar />
       <div className='abel-regular w-full text-center pt-16 lg:pt-32 relative flex flex-col items-center'>
         <h1 className=' text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold'>Analytics Report</h1>
         <p className='max-w-[90%] md:max-w-[75%] lg:max-w-[40vw] text-center mx-auto mt-6 md:mt-10 text-[#9299b8] text-[17px] inter-regular'>
           Provide Your Details to Get the Analytics Report and Insights of your social account.
         </p>
+        {error && (
+          <div className='error-box text-[19px]'>
+            {error}
+            <span className='close-btn' onClick={() => setError('')}>✖</span>
+          </div>
+        )}
+        {accountError && (
+          <div className='error-box text-[18px]'>
+            {accountError}
+            <span className='close-btn' onClick={() => setAccountError('')}>✖</span>
+          </div>
+        )}
         <form className='mt-12 w-full inter-regular' onSubmit={handleSubmit}>
           <div className='flex flex-col lg:flex-row items-center justify-evenly'>
             {/* Platform Dropdown */}
@@ -122,6 +219,7 @@ function UserInputPage() {
                   </div>
                 )}
               </div>
+              
             </div>
 
             {/* Account Name Dropdown */}
@@ -176,7 +274,7 @@ function UserInputPage() {
                 {dropdownOpen.postType && (
                   <div className='absolute w-[300px] bg-gray-900 rounded mt-1 z-10'>
                     <ul className='text-white text-lg'>
-                      {['Image', 'Reel', 'Story'].map((item) => (
+                      {['Image', 'Threads', 'Video'].map((item) => (
                         <li
                           key={item}
                           className='px-4 py-2 hover:bg-[#004e74] cursor-pointer'
@@ -199,6 +297,9 @@ function UserInputPage() {
             className='bg-[#F6A01D] mx-auto text-[#2D2D2D] hover:scale-105 transition-all duration-100 px-4 h-[45px] mt-10 rounded inter-regular text-[20px] flex justify-center items-center gap-3'
           >
             Generate Report
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 512 512">
+            <path fill="#2D2D2D" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zm-312 8l0 64c0 13.3 10.7 24 24 24s24-10.7 24-24l0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80-96l0 160c0 13.3 10.7 24 24 24s24-10.7 24-24l0-160c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80 64l0 96c0 13.3 10.7 24 24 24s24-10.7 24-24l0-96c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+            </svg>
           </button>
         </form>
       </div>

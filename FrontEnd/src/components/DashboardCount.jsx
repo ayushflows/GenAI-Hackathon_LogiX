@@ -75,7 +75,7 @@ function DashboardCount({analyzedData}) {
               className={`w-[49%] md:w-[23%] h-[100px] md:h-[120px] bg-gradient-to-bl ${metric.gradient} ${metric.border} rounded-xl flex items-center justify-between p-4 md:p-2 lg:p-4 border-2 shadow-lg mb-4`}
             >
               <div className="text-left">
-                <p className="text-4xl font-bold text-white">{metric.value}</p>
+                <p className="text-2xl md:text-4xl font-bold text-white">{metric.value}</p>
                 <p className="text-[#cccccc] mt-2">{metric.label}</p>
               </div>
               <div className="text-right text-white">{metric.icon}</div>
