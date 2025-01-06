@@ -208,15 +208,24 @@ app.post('/data', (req, res) => {
 app.post("/fetchdata", async (req, res) => {
     try {
         globalDataLang = JSON.stringify(globalDataResults, null, 2);
-        const inputValue = `${globalDataLang}\n${prompt}`;
-        const result = await main(inputValue);
-        const parsedResult = JSON.parse(result.message.text);
+        const inputValue = `${globalDataLang}\n${prompt}`;  
+        const result = await main(inputValue); 
+        let parsedResult;
+        try {
+            parsedResult = JSON.parse(result.message.text);
+        } catch (err) {
+            console.error("JSON parsing error:", err.message, result.message.text);
+            return res.status(500).json({
+                error: "Invalid JSON format received from the main() function.",
+            });
+        }
         res.json(parsedResult);
     } catch (error) {
         console.error("Error fetching data:", error.message);
         res.status(500).json({ error: "An error occurred while fetching data." });
     }
 });
+
 
 
 app.post('/dataAnalysis', async (req, res) => {
