@@ -13,9 +13,6 @@ function DashboardPage() {
   const [activeButton, setActiveButton] = useState('dashboard');
   const [analyzedData, setAnalyzedData] = useState(location.state?.analyzedData || null);
 
-  useEffect(()=>{
-    console.log('data recieved is:',analyzedData);
-  },[analyzedData])
 
   const handleScroll = () => {
     const sections = document.querySelectorAll('section');

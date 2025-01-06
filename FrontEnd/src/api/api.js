@@ -41,3 +41,17 @@ export const analyzeData = async (params) => {
     throw error;
   }
 };
+
+/**
+ * A demo function to hit the root route of the backend.
+ * @returns {Promise<Object>} - The response from the backend.
+ */
+export const demoFetch = async () => {
+  try {
+    const response = await api.get('/'); // Sending a GET request to the root route.
+    return response.data; // Assuming the backend returns a JSON response.
+  } catch (error) {
+    console.error('Error with the demo fetch:', error);
+    throw error;
+  }
+};

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
-import { analyzeData, fetchDistinctUsers } from '../api/api';
+import { analyzeData, demoFetch, fetchDistinctUsers } from '../api/api';
 import { MultiStepLoader as Loader } from "../components/ui/multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 const loadingStates = [
@@ -91,14 +91,11 @@ function UserInputPage() {
     setDropdownOpen((prev) => ({ ...prev, platform: false }));
     setAccountLoading(true);
     setAccountError('');
-    console.log("fetching accounts");
     fetchDistinctUsers(selectedPlatform)
       .then((users) => {
-        console.log('Distinct Users:');
         setAccountOptions(users);
       })
       .catch((error) => {
-        console.error('Error:', error);
         setAccountError('Failed to fetch account details. Please try again.');
       })
       .finally(() => {
@@ -108,23 +105,27 @@ function UserInputPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!platform || !accountName || !postType) {
+      setError('All fields are required. Please select a platform, account name, and post type.');
+      return;
+    }
     setLoading(true);
     setError('');
     const analyzingData = {socialAccount: platform, user:accountName, postType: postType};
-    console.log("analyzing...")
     analyzeData(analyzingData)
       .then((analyzedData) => {
-        console.log('Analyzed Data:');
         navigate('/dashboard', { state: { analyzedData } });
       })
       .catch((error) => {
-        console.error('Error:', error);
         setError('Failed to generate report. Please try again.');
       }).finally(() => {
         setLoading(false);
       });
   };
 
+  useEffect(()=>{
+    demoFetch().then((response)=>{}).catch((error)=>{});
+  },[])
 
   return (
     <div className='text-2xl h-screen w-[100vw] text-white landing-page-bg relative overflow-hidden'>
