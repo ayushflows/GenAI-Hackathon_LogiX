@@ -9,8 +9,21 @@ const db = client.db('https://be853ae4-2ec8-4eb0-a184-265ee7d1e86c-us-east-2.app
 
 const main = require('./langflow');
 
-app.use(cors());
+const allowedOrigins = ['http://localhost:5173', 'https://genai-hackathon.web.app'];
 
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests with no origin (e.g., mobile apps or Postman)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
