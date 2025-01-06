@@ -85,43 +85,35 @@ app.post('/data', (req, res) => {
 
 
 app.post("/fetchdata", async (req, res) => {
-    
-        globalDataLang = JSON.stringify(globalDataResults);
-        const result = await main(globalDataLang);
-        console.log(result.message.text)
-        const parsedResult = JSON.parse(result.message.text); 
-        res.json(parsedResult);
+
+    globalDataLang = JSON.stringify(globalDataResults);
+    const result = await main(globalDataLang);
+    console.log(result.message.text)
+    const parsedResult = JSON.parse(result.message.text);
+    res.json(parsedResult);
 });
-
-
-
 
 app.post('/dataAnalysis', async (req, res) => {
     const { socialAccount, user, postType } = req.body;
+    const cursor = await db.collection('final_dataset').find(
+        {
+            platform: socialAccount,
+            User: user,
+            post_type: postType,
+        },
+        {
+            projection: { _id: 0 },
+        }
+    );
+    const Data_results = await cursor.toArray();
+    globalDataResults = Data_results;
+    const globalDataLang = JSON.stringify(Data_results);
+    const result = await main(globalDataLang);
+    const parsedResult = JSON.parse(result.message.text);
+    res.json(parsedResult);
 
-    try {
-        const cursor = await db.collection('final_dataset').find(
-            {
-                platform: socialAccount,
-                User: user,
-                post_type: postType,
-            },
-            {
-                projection: { _id: 0 },
-            }
-        );
-        const Data_results = await cursor.toArray();
-        globalDataResults = Data_results;
-        const globalDataLang = JSON.stringify(Data_results);
-        const result = await main(globalDataLang);
-        console.log(result.message.text)
-        const parsedResult = JSON.parse(result.message.text);
-        res.json(parsedResult);
-    } catch (error) {
-        console.error('Error during data analysis:', error.message);
-        res.status(500).json({ error: 'An error occurred while processing your request.' });
-    }
 });
+
 
 
 
