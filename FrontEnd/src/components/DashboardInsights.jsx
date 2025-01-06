@@ -157,10 +157,10 @@ function DashboardInsights({ analyzedData }) {
               <p className="text-[12px] sm:text-sm text-[#c5c5c5] mb-4">See the level of engagement (likes, comments, shares) in relation to the total reach of your posts.</p>
             </div>
             <div className="relative w-full h-[76%]">
-              <ArcProgress sentimentalPercentage={analyzedData["Sentimental Analysis"] * 100} />
+              <ArcProgress sentimentalPercentage={analyzedData.sentimental_analysis} />
             </div>
           </div>
-          <ConversionRatioCard reachCount={analyzedData.reach} conversionPercentage={analyzedData.conversion_rate * 100} />
+          <ConversionRatioCard reachCount={analyzedData.reach} conversionPercentage={analyzedData.conversion_rate} />
         </div>
         <div className="bg-[#22252D] p-4 md:p-6 lg:p-8 rounded-lg shadow-lg w-full mt-6">
           <h3 className="text-md text-[#ebebeb] mb-4">Other Insights</h3>

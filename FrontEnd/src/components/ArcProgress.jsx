@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
 
-const ArcProgress = ({ sentimentalPercentage}) => {
+const ArcProgress = ({ sentimentalPercentage }) => {
   const engagementPercentage = sentimentalPercentage;
   const [progress, setProgress] = useState(0);
   const [displayedPercentage, setDisplayedPercentage] = useState(0);
 
   useEffect(() => {
     const duration = 1500;
-    const step = 3;
     const percentageEnd = engagementPercentage;
-    const arcEnd = (engagementPercentage / 100) * 251.2;
-    let progressStart = 0;
-    let percentageStart = 0;
+    const totalLength = 282.7; // Length of semicircle path
+    const arcEnd = (engagementPercentage / 100) * totalLength;
     const startTime = performance.now();
+
     const animation = (time) => {
       const elapsedTime = time - startTime;
-      const progressIncrement = Math.min((elapsedTime / duration) * arcEnd, arcEnd);
-      const percentageIncrement = Math.min((elapsedTime / duration) * percentageEnd, percentageEnd);
+      const progressRatio = Math.min(elapsedTime / duration, 1);
+      
+      const progressIncrement = arcEnd * progressRatio;
+      const percentageIncrement = percentageEnd * progressRatio;
+
       setProgress(progressIncrement);
       setDisplayedPercentage(percentageIncrement.toFixed(1));
+
       if (elapsedTime < duration) {
         requestAnimationFrame(animation);
       } else {
@@ -26,6 +29,7 @@ const ArcProgress = ({ sentimentalPercentage}) => {
         setDisplayedPercentage(percentageEnd.toFixed(1));
       }
     };
+
     requestAnimationFrame(animation);
   }, [engagementPercentage]);
 
@@ -45,8 +49,8 @@ const ArcProgress = ({ sentimentalPercentage}) => {
           d="M 10,90 A 80,80 0 0,1 190,90"
           stroke="#FFA500"
           strokeWidth="20"
-          strokeDasharray={`${progress} 251.2`}
           strokeLinecap="round"
+          strokeDasharray={`${progress}, 282.7`}
           fill="none"
         />
       </svg>
