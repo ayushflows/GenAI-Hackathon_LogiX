@@ -27,7 +27,9 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-let prompt = `You are provided with the social media data of a particular user. Analyze the data and provide the analysis strictly in the following JSON format, Do not write comments and thin irrelevent or extra , just provide the vlaues of filed given, strictly:
+let prompt = `You are provided with social media data of a particular user. Analyze the data and provide the analysis strictly in the following JSON format. Ensure all calculations adhere strictly to the provided formulas, handle edge cases, and ensure percentages do not exceed 100%. Use the listed country codes only where applicable.
+
+Strictly follow this format:
 
 {
   "username": "",
@@ -38,7 +40,7 @@ let prompt = `You are provided with the social media data of a particular user. 
   "shares": ,
   "reach": ,
   "country_code": "(here provide the code of the country which has the highest audience located in that region, strictly provide only one country code from following below list:     
-  { name: "United States", code: "US" },
+    { name: "United States", code: "US" },
     { name: "Brazil", code: "BR" },
     { name: "Germany", code: "DE" },
     { name: "France", code: "FR" },
@@ -99,33 +101,33 @@ let prompt = `You are provided with the social media data of a particular user. 
     { name: "Iceland", code: "IS" },
     { name: "Luxembourg", code: "LU" },
     { name: "Malta", code: "MT" },
-    { name: "Cyprus", code: "CY" }, do not provide any other country code except these, provide the top first country from this list),",
+    { name: "Cyprus", code: "CY" }, do not provide any other country code except these, provide the top first country from this list),
   "gender_distribution": {
     "male_percentage": ,
     "female_percentage": 
   },
- "audience_age": {{Percentage=(Total Number of Users / Number of Users in Age Group)×100}
-    "18-24": Percentage(18−24),
-    "25-34": Percentage(25−34),
-    "35-44": Percentage(35−44),
-    "45+": Percentage(45+),
+  "audience_age": {
+    "18-24": ,
+    "25-34": ,
+    "35-44": ,
+    "45+": 
   },
- "reach_time_stamp_graph": {{Average Reach (Time Period) = Total reach for specific time period / Number of posts in that time period}(Calculate using this formula strictly)}
+  "reach_time_stamp_graph": {
     "weekday": {
-      "morning": Average Reach of (morning),
-      "afternoon": Average Reach of (afternoon),
-      "evening": Average Reach of (evening),
-      "night": Average Reach of (night)
+    "morning": (average reach in weekday of morning , it must strictly numeric number) ,
+      "afternoon":(average reach in weekday of afternoon , it must strictly numeric number) ,
+      "evening": (average reach in weekday of evening,it must strictly numeric number),
+      "night": (average reach in weekday of night, it must strictly numeric number)(
     },
     "weekend": {
-      "morning": Average Reach of (morning),
-      "afternoon": Average Reach of (afternoon),
-      "evening": Average Reach of (evening),
-      "night": Average Reach of (night)
+      "morning":(average reach in weekend of morning, it must strictly numeric number),
+      "afternoon":(average reach in weekend of afternoon, it must strictly numeric number ),
+      "evening": (average reach in weekend of evening, it must strictly numeric number),
+      "night":(average reach in weekend of night, it must strictly numeric number)
     }
   },
-    "Sentimental Analysis" : (likes+reach+shares/totalreach, convert this in percentage), 
-  "conversion_rate": (reach/impression, convert this in percentage),
+  "sentimental_analysis": ,
+  "conversion_rate": ,
   "insights": [
     "insight1",
     "insight2",
@@ -133,7 +135,18 @@ let prompt = `You are provided with the social media data of a particular user. 
     "insight4",
     "insight5"
   ]
-}`
+}
+
+Key Calculation Notes:
+1. **Gender Distribution**: Calculate percentages for male and female audience by dividing the count of each gender by the total audience and multiplying by 100.
+2. **Audience Age**: Use the formula: Percentage = (Number of Users in Age Group / Total Users) × 100.
+3. **Reach Time Stamp Graph**: Calculate the average reach for each time period (Morning,Afternoon,Evening,Night) using the formula: Average Reach (Time Period of specified field) = (Total Reach for specific time period) / (Number of posts in that time period).
+4. **Sentimental Analysis**: Use the formula: (total_likes + total_comment + total_shares) / total_reach × 100. Ensure it is capped at 100%.
+5. **Conversion Rate**: Calculate as: (reach / impressions) × 100, capped at 100%.
+6. **Insights**: Generate key insights from the data based on trends, engagement, and performance.
+
+Output strictly in JSON format with valid values derived from the data provided. Do not include any additional commentary or invalid values. Ensure all calculated values are correct.
+`
 
 let globalDataResults = [];
 
@@ -171,7 +184,7 @@ app.post('/data', (req, res) => {
                 .find(
                     {
                         platform: socialAccount,
-                        User: User,
+                        User: user,
                         post_type: postType,
                     },
                     {
@@ -195,15 +208,24 @@ app.post('/data', (req, res) => {
 app.post("/fetchdata", async (req, res) => {
     try {
         globalDataLang = JSON.stringify(globalDataResults, null, 2);
-        const inputValue = `${globalDataLang}\n${prompt}`;
-        const result = await main(inputValue);
-        const parsedResult = JSON.parse(result.message.text);
+        const inputValue = `${globalDataLang}\n${prompt}`;  
+        const result = await main(inputValue); 
+        let parsedResult;
+        try {
+            parsedResult = JSON.parse(result.message.text);
+        } catch (err) {
+            console.error("JSON parsing error:", err.message, result.message.text);
+            return res.status(500).json({
+                error: "Invalid JSON format received from the main() function.",
+            });
+        }
         res.json(parsedResult);
     } catch (error) {
         console.error("Error fetching data:", error.message);
         res.status(500).json({ error: "An error occurred while fetching data." });
     }
 });
+
 
 
 app.post('/dataAnalysis', async (req, res) => {
