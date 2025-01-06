@@ -70,15 +70,15 @@ function DashboardPage() {
           <h1 className='text-2xl font-normal figtree-regular w-full py-3 text-center text-[#e6e6e6] mb-2'> Analytics Overview </h1>
           {analyzedData ? (
             <>
-              <DashboardActivePlatform data={analyzedData.activePlatform} />
+              <DashboardActivePlatform analyzedData={analyzedData} />
               <section id="dashboard">
-                <DashboardCount data={analyzedData.dashboardCount} />
+                <DashboardCount analyzedData={analyzedData} />
               </section>
               <section id="audience">
-                <AudienceAnalytics data={analyzedData.audienceAnalytics} />
+                <AudienceAnalytics analyzedData={analyzedData} />
               </section>
               <section id="insights">
-                <DashboardInsights data={analyzedData.dashboardInsights} />
+                <DashboardInsights analyzedData={analyzedData} />
               </section>
             </>
           ) : (

@@ -5,8 +5,8 @@ import { PieChart } from "@mui/x-charts";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaBriefcase, FaHome, FaTree } from "react-icons/fa";
 
-const AudienceAnalytics = () => {
-  const [highlightedCountry, setHighlightedCountry] = useState("IN");
+const AudienceAnalytics = ({ analyzedData }) => {
+  const [highlightedCountry, setHighlightedCountry] = useState(analyzedData.country_code.split(',')[0]);
 
   const generateData = () => {
     const countries = [["Country", "Majority Percentage"]];
@@ -34,15 +34,15 @@ const AudienceAnalytics = () => {
   };
 
   const genderData = [
-    { id: 0, value: 62.4, label: "Male" },
-    { id: 1, value: 37.6, label: "Female" },
+    { id: 0, value: analyzedData.gender_distribution.male_percentage, label: "Male" },
+    { id: 1, value: analyzedData.gender_distribution.female_percentage, label: "Female" },
   ];
 
   const ageGroups = [
-    { label: "18-24 years", percentage: 35, icon: <FaGraduationCap size={24} /> },
-    { label: "25-34 years", percentage: 45, icon: <FaBriefcase size={24} /> },
-    { label: "35-44 years", percentage: 15, icon: <FaHome size={24} /> },
-    { label: "45+ years", percentage: 5, icon: <FaTree size={24} /> },
+    { label: "18-24 years", percentage: analyzedData.audience_age["18-24"], icon: <FaGraduationCap size={24} /> },
+    { label: "25-34 years", percentage: analyzedData.audience_age["25-34"], icon: <FaBriefcase size={24} /> },
+    { label: "35-44 years", percentage: analyzedData.audience_age["35-44"], icon: <FaHome size={24} /> },
+    { label: "45+ years", percentage: analyzedData.audience_age["45+"], icon: <FaTree size={24} /> },
   ];
 
   const highestGender = genderData.reduce((prev, current) => (prev.value > current.value) ? prev : current).label;
@@ -142,13 +142,13 @@ const AudienceAnalytics = () => {
               <p className="text-[12px] lg:text-sm text-[#c5c5c5] mb-4">Your audience is mostly located in {highestCountry}.</p>
             </div>
             <div className="relative w-full h-[83%]">
-            <Chart
-              chartType="GeoChart"
-              width="100%"
-              height="100%"
-              data={baseData}
-              options={chartOptions}
-            />
+              <Chart
+                chartType="GeoChart"
+                width="100%"
+                height="100%"
+                data={baseData}
+                options={chartOptions}
+              />
             </div>
           </div>
 

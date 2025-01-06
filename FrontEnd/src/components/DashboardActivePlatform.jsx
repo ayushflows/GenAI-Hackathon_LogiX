@@ -7,9 +7,13 @@ const socialmedias = [
   { id: 4, name: 'LinkedIn', icon: <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zm-46.44-340.9C24.1 107.1 0 82.6 0 53.6 0 24.1 24.1 0 53.84 0c29.74 0 53.84 24.1 53.84 53.6 0 29.1-24.1 53.5-53.84 53.5zM447.9 448h-92.88V302.4c0-34.7-12.5-58.4-43.75-58.4-23.87 0-38.1 16.1-44.4 31.7-2.3 5.5-2.8 13.1-2.8 20.8V448h-92.88s1.2-239.8 0-264.1h92.88v37.4c-1.8 2.8-4.3 5.5-6.2 8.3h.1c8.3-12.8 23.2-31.1 56.5-31.1 41.3 0 72.3 27 72.3 85.1V448z"/></svg> }
 ];
 
-function DashboardActivePlatform() {
-  const [selectedPlatform, setSelectedPlatform] = useState(2);
+function DashboardActivePlatform({analyzedData}) {
+  const [selectedPlatform, setSelectedPlatform] = useState('Instagram');
   const [posttype, setPostType] = useState('Reel');
+
+  useEffect(() => {
+    if(analyzedData !== null) setSelectedPlatform(analyzedData?.platform)
+  },[analyzedData]);
 
   return (
     <div className='flex lg:flex-col xl:flex-row md:flex-row flex-col md:mx-auto md:w-[90%] md:justify-between lg:justify-start items-center lg:ml-12 mb-[40px] md:mb-[90px]'>
@@ -17,15 +21,15 @@ function DashboardActivePlatform() {
         {socialmedias.map((socialmedia) => (
           <button
             key={socialmedia.id}
-            onClick={() => setSelectedPlatform(socialmedia.id)}
-            className={`relative flex items-center justify-center px-2 py-[10px] gap-1 md:gap-2 ${selectedPlatform === socialmedia.id ? 'text-white' : 'text-gray-400 opacity-50'}`}
-            disabled={selectedPlatform !== null && selectedPlatform !== socialmedia.id}
+            onClick={() => setSelectedPlatform(socialmedia.name)}
+            className={`relative flex items-center justify-center px-2 py-[10px] gap-1 md:gap-2 ${selectedPlatform === socialmedia.name ? 'text-white' : 'text-gray-400 opacity-50'}`}
+            disabled={selectedPlatform !== null && selectedPlatform !== socialmedia.name}
           >
             {React.cloneElement(socialmedia.icon, {
-              fill: selectedPlatform === socialmedia.id ? 'white' : 'gray',
+              fill: selectedPlatform === socialmedia.name ? 'white' : 'gray',
             })}
             <span className='text-[13px] md:text-lg'>{socialmedia.name}</span>
-            {selectedPlatform === socialmedia.id && (
+            {selectedPlatform === socialmedia.name && (
               <div className="absolute bottom-[1px] left-0 right-0 h-[3px] bg-orange-500 rounded-full"></div>
             )}
           </button>
@@ -33,7 +37,7 @@ function DashboardActivePlatform() {
       </div>
       <div className={`mt-4 md:mt-0 lg:mt-4 xl:mt-0 md:ml-10 flex items-center gap-2 justify-center bg-[#22252D] py-2 px-4 rounded-lg shadow-lg`}>
         <p className='text-[14px] md:text-md text-gray-300'>Post Type: </p>
-        <p className='text-[14px] md:text-md text-white'> {posttype}</p>
+        <p className='text-[14px] md:text-md text-white'> {analyzedData.type ?? 'Reel'}</p>
       </div>
     </div>
   );

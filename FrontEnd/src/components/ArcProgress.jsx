@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const ArcProgress = ({ totalReach, engagement }) => {
-  const engagementPercentage = totalReach > 0 ? (engagement / totalReach) * 100 : 0;
+const ArcProgress = ({ sentimentalPercentage}) => {
+  const engagementPercentage = sentimentalPercentage;
   const [progress, setProgress] = useState(0);
   const [displayedPercentage, setDisplayedPercentage] = useState(0);
 
