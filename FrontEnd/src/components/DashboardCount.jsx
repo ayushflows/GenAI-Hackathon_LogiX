@@ -5,7 +5,7 @@ function DashboardCount({analyzedData}) {
   const [postType, setPostType] = useState('Reel');
 
   const formatValue = (value) => {
-    return value > 999 ? (value / 1000).toFixed(2) + 'k' : value;
+    return value > 999 ? (value / 1000).toFixed(2) + 'k' : Math.round(value);
   };
 
   const metrics = [

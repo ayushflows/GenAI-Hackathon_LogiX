@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { analyzeData, demoFetch, fetchDistinctUsers } from '../api/api';
 import { MultiStepLoader as Loader } from "../components/ui/multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
+import bgImg from "../assets/bgimg.png";
+
 const loadingStates = [
   {
     text: "Filtering the Accounts Data",
@@ -129,7 +131,17 @@ function UserInputPage() {
 
   return (
     <div className='text-2xl h-screen w-[100vw] text-white landing-page-bg relative overflow-hidden'>
-      <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div>
+      {/* <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div> */}
+          <div 
+      className="absolute inset-0 w-[100vw] h-[100vh] opacity-[0.13]" 
+      style={{
+        backgroundImage: `url(${bgImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        filter: 'invert(1)',
+      }}
+    ></div>
     <Loader loadingStates={loadingStates} loading={loading} duration={1300} />
       {accountLoading && (
         <div className='absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
@@ -176,7 +188,7 @@ function UserInputPage() {
       <Navbar />
       <div className='abel-regular w-full text-center pt-16 lg:pt-32 relative flex flex-col items-center'>
         <h1 className=' text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold'>Analytics Report</h1>
-        <p className='max-w-[90%] md:max-w-[75%] lg:max-w-[40vw] text-center mx-auto mt-6 md:mt-10 text-[#9299b8] text-[17px] inter-regular'>
+        <p className='max-w-[90%] md:max-w-[75%] lg:max-w-[40vw] text-center mx-auto mt-6 md:mt-10 text-[#eaeeff] text-[17px] inter-regular'>
           Provide Your Details to Get the Analytics Report and Insights of your social account.
         </p>
         {error && (

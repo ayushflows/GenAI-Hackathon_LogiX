@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import { DashBoardImgScroll } from '../components/dashboardimg-scroll';
 import Footer from '../components/footer';
 import { demoFetch } from '../api/api';
-
+import bgImg from "../assets/bgimg.png";
 function LandingPage() {
   const [animateText, setAnimateText] = useState(false);
   const navigate = useNavigate();
@@ -29,7 +29,17 @@ function LandingPage() {
   return (
     <>
     <div className='text-2xl text-[#E5E5E5] landing-page-bg landing-page-scrollbar relative overflow-x-hidden overflow-y-auto'>
-      <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div>
+      {/* <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div> */}
+      <div 
+  className="absolute inset-0 w-[100vw] h-[100vh] opacity-[0.13]" 
+  style={{
+    backgroundImage: `url(${bgImg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    filter: 'invert(1)',
+  }}
+></div>
       <Navbar />
       <div className='abel-regular w-full text-center pt-32 relative'>
         <motion.h1

@@ -34,17 +34,66 @@ const AudienceAnalytics = ({ analyzedData }) => {
   };
 
   const genderData = [
-    { id: 0, value: analyzedData.gender_distribution.male_percentage, label: "Male" },
-    { id: 1, value: analyzedData.gender_distribution.female_percentage, label: "Female" },
+    {
+      id: 0,
+      value: analyzedData.gender_distribution.male_percentage === 0
+        ? "0"
+        : (analyzedData.gender_distribution.male_percentage % 1 === 0
+          ? analyzedData.gender_distribution.male_percentage
+          : analyzedData.gender_distribution.male_percentage.toFixed(2)),
+      label: "Male"
+    },
+    {
+      id: 1,
+      value: analyzedData.gender_distribution.female_percentage === 0
+        ? "0"
+        : (analyzedData.gender_distribution.female_percentage % 1 === 0
+          ? analyzedData.gender_distribution.female_percentage
+          : analyzedData.gender_distribution.female_percentage.toFixed(2)),
+      label: "Female"
+    }
   ];
+  
 
   const ageGroups = [
-    { label: "18-24 years", percentage: analyzedData.audience_age["18-24"], icon: <FaGraduationCap size={24} /> },
-    { label: "25-34 years", percentage: analyzedData.audience_age["25-34"], icon: <FaBriefcase size={24} /> },
-    { label: "35-44 years", percentage: analyzedData.audience_age["35-44"], icon: <FaHome size={24} /> },
-    { label: "45+ years", percentage: analyzedData.audience_age["45+"], icon: <FaTree size={24} /> },
+    {
+      label: "18-24 years",
+      percentage: analyzedData.audience_age["18-24"] === 0
+        ? "0"
+        : (analyzedData.audience_age["18-24"] % 1 === 0
+          ? analyzedData.audience_age["18-24"]
+          : analyzedData.audience_age["18-24"].toFixed(2)),
+      icon: <FaGraduationCap size={24} />
+    },
+    {
+      label: "25-34 years",
+      percentage: analyzedData.audience_age["25-34"] === 0
+        ? "0"
+        : (analyzedData.audience_age["25-34"] % 1 === 0
+          ? analyzedData.audience_age["25-34"]
+          : analyzedData.audience_age["25-34"].toFixed(2)),
+      icon: <FaBriefcase size={24} />
+    },
+    {
+      label: "35-44 years",
+      percentage: analyzedData.audience_age["35-44"] === 0
+        ? "0"
+        : (analyzedData.audience_age["35-44"] % 1 === 0
+          ? analyzedData.audience_age["35-44"]
+          : analyzedData.audience_age["35-44"].toFixed(2)),
+      icon: <FaHome size={24} />
+    },
+    {
+      label: "45+ years",
+      percentage: analyzedData.audience_age["45+"] === 0
+        ? "0"
+        : (analyzedData.audience_age["45+"] % 1 === 0
+          ? analyzedData.audience_age["45+"]
+          : analyzedData.audience_age["45+"].toFixed(2)),
+      icon: <FaTree size={24} />
+    }
   ];
-
+  
   const highestGender = genderData.reduce((prev, current) => (prev.value > current.value) ? prev : current).label;
   const highestCountry = baseData.reduce((prev, current) => (prev[1] > current[1]) ? prev : current)[0];
 
