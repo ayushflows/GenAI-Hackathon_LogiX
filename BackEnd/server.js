@@ -104,24 +104,24 @@ let prompt = `You are provided with the social media data of a particular user. 
     "male_percentage": ,
     "female_percentage": 
   },
-  "audience_age": {
-    "18-24": (percentage of audience in this age group),
-    "25-34": (percentage of audience in this age group),,
-    "35-44": (percentage of audience in this age group),,
-    "45+": (percentage of audience in this age group),
+ "audience_age": {{Percentage=(Total Number of Users / Number of Users in Age Group)×100}
+    "18-24": Percentage(18−24),
+    "25-34": Percentage(25−34),
+    "35-44": Percentage(35−44),
+    "45+": Percentage(45+),
   },
-  "reach_time_stamp_graph": {
+ "reach_time_stamp_graph": {{Average Reach (Time Period) = Total reach for specific time period / Number of posts in that time period}(Calculate using this formula strictly)}
     "weekday": {
-      "morning": (average no of reach in morning on weekdays),
-      "afternoon": (average no of reach in afternoon on weekdays),
-      "evening": (average no of reach in evening on weekdays),
-      "night": (average no of reach in night on weekdays),
+      "morning": Average Reach of (morning),
+      "afternoon": Average Reach of (afternoon),
+      "evening": Average Reach of (evening),
+      "night": Average Reach of (night)
     },
     "weekend": {
-      "morning": (average no of reach in morning on weekends),
-      "afternoon": (average no of reach in afternoon on weekends),
-      "evening": (average no of reach in evening on weekends),
-      "night": (average no of reach in night on weekends),
+      "morning": Average Reach of (morning),
+      "afternoon": Average Reach of (afternoon),
+      "evening": Average Reach of (evening),
+      "night": Average Reach of (night)
     }
   },
     "Sentimental Analysis" : (likes+reach+shares/totalreach, convert this in percentage), 
