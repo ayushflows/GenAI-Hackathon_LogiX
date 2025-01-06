@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 const { DataAPIClient } = require('@datastax/astra-db-ts');
@@ -7,6 +8,8 @@ const client = new DataAPIClient(process.env.db);
 const db = client.db('https://be853ae4-2ec8-4eb0-a184-265ee7d1e86c-us-east-2.apps.astra.datastax.com');
 
 const main = require('./langflow');
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
