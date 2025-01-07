@@ -14,7 +14,7 @@ function Navbar() {
         <a href='/' className='text-gray-300 hover:text-[#F97315] text-[16px] md:text-lg '>Home</a>
         <a href='/contact' className='text-gray-300 hover:text-[#F97315] text-lg hidden md:block'>Contact</a>
         <a href='/userinput' className='text-gray-300 hover:text-[#F97315] text-[16px] md:text-lg'>Get Started</a>
-        <button onClick={() => { window.open("https://github.com/ayushflows", "_blank");}} 
+        <button onClick={() => { window.open("https://github.com/ayushflows/GenAI-Hackathon_LogiX", "_blank");}} 
           className="px-4 py-[1px] rounded-full relative bg-slate-700 text-white text-[16px] md:text-lg hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
           <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
           <span className="relative z-20">Github</span>
