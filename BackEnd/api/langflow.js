@@ -91,9 +91,9 @@ async function main(inputValue, inputType = 'chat', outputType = 'chat', stream 
             outputType,
             tweaks,
             stream,
-            (data) => console.log("Received:", data.chunk), // onUpdate
-            (message) => console.log("Stream Closed:", message), // onClose
-            (error) => console.log("Stream Error:", error) // onError
+            (data) => console.log("Received:", data.chunk), 
+            (message) => console.log("Stream Closed:", message), 
+            (error) => console.log("Stream Error:", error)
         );
 
         if (!stream && response && response.outputs) {
