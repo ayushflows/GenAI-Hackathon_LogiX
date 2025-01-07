@@ -2,6 +2,7 @@ const { DataAPIClient } = require('@datastax/astra-db-ts');
 const client = new DataAPIClient(process.env.db);
 const db = client.db('https://be853ae4-2ec8-4eb0-a184-265ee7d1e86c-us-east-2.apps.astra.datastax.com');
 const main = require('../api/langflow');
+
 let globalDataResults = [];
 
 module.exports.astraDb_socialAccount = async (req, res) => {
