@@ -128,7 +128,7 @@ function UserInputPage() {
   };
 
   return (
-    <div className='text-2xl min-h-screen w-[100vw] text-white landing-page-bg relative overflow-hidden pb-32 sm:pb-4'>
+    <div className='text-2xl min-h-screen w-[100vw] text-white landing-page-bg overflow-x-hidden relative pb-32 sm:pb-4'>
       {/* <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:120px_120px]'></div> */}
           <div 
       className="absolute inset-0 w-[100vw] h-[100vh] opacity-[0.13]" 
