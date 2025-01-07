@@ -87,13 +87,13 @@ const people = [
   {
     id: 2,
     name: "Nitesh Saini",
-    designation: "Backend & AI Developer",
+    designation: "Backend Developer",
     image:
     "https://avatars.githubusercontent.com/u/139841989?v=4",
   },
   {
     id: 3,
-    name: "Bhagwat Karhale",
+    name: "Bhagawat Karhale",
     designation: "AI Developer",
     image:
     "https://avatars.githubusercontent.com/u/145754489?v=4",
@@ -101,7 +101,7 @@ const people = [
   {
     id: 4,
     name: "Rishabh Kumar",
-    designation: "Data Scientist",
+    designation: "Data Analyst",
     image:
     "https://avatars.githubusercontent.com/u/142030870?v=4",
   },

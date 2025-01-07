@@ -95,9 +95,11 @@ function UserInputPage() {
     setAccountError('');
     fetchDistinctUsers(selectedPlatform)
       .then((users) => {
+        console.log("data", users);
         setAccountOptions(users);
       })
       .catch((error) => {
+        console.log('error', error);
         setAccountError('Failed to fetch account details. Please try again.');
       })
       .finally(() => {
