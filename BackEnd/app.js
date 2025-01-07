@@ -5,6 +5,8 @@ const app = express();
 const port = 3000;
 const dataStaxRouter = require("./routes/astraDbRoute");
 const langflowRouter = require("./routes/langflowRoute");
+const homeRouter = require("./routes/home");
+
 
 const allowedOrigins = ['http://localhost:5173', 'https://genai-hackathon.web.app'];
 
@@ -23,6 +25,7 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use("/", homeRouter);
 app.use("/data" , dataStaxRouter);
 app.use("/data", langflowRouter);
 
