@@ -1,6 +1,8 @@
 # Project: Social Media Performance Analysis
 Social Media Performance Analysis is a web app developed for the assignment submission of **The Level SuperMind Hackathon**. It provides insights into social media engagement, offering key metrics like likes, comments, shares, and audience demographics. The app leverages AI and a scalable database for automated reporting and optimization recommendations.
 
+Take a look at it: [https://genai-hackathon.web.app/](https://genai-hackathon.web.app/)
+
 # Table of Contents
 
 1. [Project Overview](#objective)
@@ -29,6 +31,7 @@ The project aims to develop an advanced analytics module utilizing **Langflow** 
 
 
 ## **Live Link**
+You can explore the live version of the project by clicking on the link below:
 [https://genai-hackathon.web.app/](https://genai-hackathon.web.app/)
 
 
