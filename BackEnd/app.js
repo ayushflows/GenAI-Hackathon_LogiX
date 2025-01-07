@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 3000;
+const port = 5000;
 const dataStaxRouter = require("./routes/astraDbRoute");
 const langflowRouter = require("./routes/langflowRoute");
 const homeRouter = require("./routes/home");
