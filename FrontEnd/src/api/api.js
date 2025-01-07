@@ -16,7 +16,7 @@ const api = axios.create({
  */
 export const fetchDistinctUsers = async (socialAccount) => {
   try {
-    const response = await api.post( '/socialAccount', { socialAccount });
+    const response = await api.post( '/data/socialAccount', { socialAccount });
     return response.data.data; // Assuming `data` key contains the user list
   } catch (error) {
     console.error('Error fetching distinct users:', error);
@@ -34,7 +34,7 @@ export const fetchDistinctUsers = async (socialAccount) => {
  */
 export const analyzeData = async (params) => {
   try {
-    const response = await api.post('/dataAnalysis', params);
+    const response = await api.post('/data/dataAnalysis', params);
     return response.data; // Assuming the backend returns the processed data as JSON
   } catch (error) {
     console.error('Error analyzing data:', error);
@@ -48,7 +48,7 @@ export const analyzeData = async (params) => {
  */
 export const demoFetch = async () => {
   try {
-    const response = await api.get('/'); // Sending a GET request to the root route.
+    const response = await api.get('/data'); // Sending a GET request to the root route.
     return response.data; // Assuming the backend returns a JSON response.
   } catch (error) {
     console.error('Error with the demo fetch:', error);
