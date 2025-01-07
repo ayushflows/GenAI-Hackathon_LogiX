@@ -9,7 +9,7 @@ module.exports.astraDb_socialAccount = async (req, res) => {
     let fetchData = async () => {
         try {
             const results = await db
-                .collection('final_dataset')
+                .collection('final_database_1000')
                 .distinct('User', { platform: socialAccount });
             res.json({ data: results });
         } catch (error) {
@@ -27,11 +27,11 @@ module.exports.astraDb_data = async (req, res) => {
     let fetchData = async () => {
         try {
             const cursor = await db
-                .collection('final_dataset')
+                .collection('final_database_1000')
                 .find(
                     {
                         platform: socialAccount,
-                        User: user,
+                        user: user,
                         post_type: postType,
                     },
                     {
