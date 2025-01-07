@@ -1,5 +1,5 @@
 # Project: Social Media Performance Analysis
-Social Media Performance Analysis is a web app developed for the assignment submission of THE Level SuperMind Hackathon. It provides insights into social media engagement, offering key metrics like likes, comments, shares, and audience demographics. The app leverages AI and a scalable database for automated reporting and optimization recommendations.
+Social Media Performance Analysis is a web app developed for the assignment submission of **The Level SuperMind Hackathon**. It provides insights into social media engagement, offering key metrics like likes, comments, shares, and audience demographics. The app leverages AI and a scalable database for automated reporting and optimization recommendations.
 
 # Table of Contents
 
