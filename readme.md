@@ -28,6 +28,11 @@ Take a look at it: [https://genai-hackathon.web.app/](https://genai-hackathon.we
 ### Objective
 The project aims to develop an advanced analytics module utilizing **Langflow** for workflow automation and **DataStax Astra DB** for scalable data storage. It is designed to analyze and generate actionable insights from engagement data of mock social media accounts. The module provides a comprehensive overview of social media performance, including key metrics like likes, comments, shares, and audience demographics, to help optimize content strategies.
 
+## ⚡ Problem Statement
+
+### **Pre-Hackathon Assignment: Social Media Performance Analysis**  
+Develop a basic analytics module that utilizes **Langflow** and **DataStax Astra DB** to analyze engagement data from mock social media accounts.
+
 
 
 ## **Live Link**
