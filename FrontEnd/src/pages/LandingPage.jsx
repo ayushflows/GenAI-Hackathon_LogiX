@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import { DashBoardImgScroll } from '../components/dashboardimg-scroll';
 import Footer from '../components/footer';
-import { demoFetch } from '../api/api';
 import bgImg from "../assets/bgimg.png";
 function LandingPage() {
   const [animateText, setAnimateText] = useState(false);
@@ -16,11 +15,6 @@ function LandingPage() {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(()=>{
-    demoFetch().then((response)=>{}).catch((error)=>{});
-  },[])
-
   const handleGetStarted = () => {
     navigate('/userinput');
   };

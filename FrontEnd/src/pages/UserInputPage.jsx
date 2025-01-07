@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
-import { analyzeData, demoFetch, fetchDistinctUsers } from '../api/api';
+import { analyzeData, fetchDistinctUsers } from '../api/api';
 import { MultiStepLoader as Loader } from "../components/ui/multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 import bgImg from "../assets/bgimg.png";
@@ -124,10 +124,6 @@ function UserInputPage() {
         setLoading(false);
       });
   };
-
-  useEffect(()=>{
-    demoFetch().then((response)=>{}).catch((error)=>{});
-  },[])
 
   return (
     <div className='text-2xl h-screen w-[100vw] text-white landing-page-bg relative overflow-hidden'>
