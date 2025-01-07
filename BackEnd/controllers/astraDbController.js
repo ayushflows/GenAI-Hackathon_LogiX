@@ -10,7 +10,7 @@ module.exports.astraDb_socialAccount = async (req, res) => {
         try {
             const results = await db
                 .collection('final_database_1000')
-                .distinct('User', { platform: socialAccount });
+                .distinct('user', { platform: socialAccount });
             res.json({ data: results });
         } catch (error) {
             console.error('Error during query of filtering unique social media accounts:', error);
