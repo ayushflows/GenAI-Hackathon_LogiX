@@ -6,7 +6,6 @@
     font-size: 15px;
     border: 0;
     border-radius: 25px;
-    /* border-top: 1px solid #eee; */
     box-shadow: none;
     box-sizing: border-box;
     opacity: 1;
@@ -39,23 +38,18 @@
     background: #2F3139;
     border-radius: 20px;
     box-shadow: 
-      -8px 8px 20px rgba(0, 0, 0, 0.3), /* Light shadow on the left and bottom */
-      0 -8px 20px rgba(0, 0, 0, 0.3);  /* Light shadow on the top */
+      -8px 8px 20px rgba(0, 0, 0, 0.3),
+      0 -8px 20px rgba(0, 0, 0, 0.3);
   }
 
-
-  /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
-
 
 @keyframes dotPulse {
   0% {

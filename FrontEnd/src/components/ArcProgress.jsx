@@ -8,7 +8,7 @@ const ArcProgress = ({ sentimentalPercentage }) => {
   useEffect(() => {
     const duration = 1500;
     const percentageEnd = engagementPercentage;
-    const totalLength = 282.7; // Length of semicircle path
+    const totalLength = 282.7;
     const arcEnd = (engagementPercentage / 100) * totalLength;
     const startTime = performance.now();
 
