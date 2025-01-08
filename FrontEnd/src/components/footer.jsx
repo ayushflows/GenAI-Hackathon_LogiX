@@ -86,10 +86,10 @@ const people = [
   },
   {
     id: 2,
-    name: "Nitesh Saini",
-    designation: "Backend Developer",
+    name: "Ankur Kumar",
+    designation: "UI/UX Designer and Presenter",
     image:
-    "https://avatars.githubusercontent.com/u/139841989?v=4",
+    "https://avatars.githubusercontent.com/u/128875232?v=4",
   },
   {
     id: 3,
@@ -100,6 +100,13 @@ const people = [
   },
   {
     id: 4,
+    name: "Nitesh Saini",
+    designation: "Backend Developer",
+    image:
+    "https://avatars.githubusercontent.com/u/139841989?v=4",
+  },
+  {
+    id: 5,
     name: "Rishabh Kumar",
     designation: "Data Analyst",
     image:

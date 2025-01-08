@@ -12,7 +12,7 @@ function Navbar() {
       </div>
       <div className='flex space-x-5 md:space-x-8 justify-center items-center'>
         <a href='/' className='text-gray-300 hover:text-[#F97315] text-[16px] md:text-lg hidden md:block'>Home</a>
-        <a href='/contact' className='text-gray-300 hover:text-[#F97315] text-lg hidden md:block'>Contact</a>
+        <a href='mailto:ayushflows@gmail.com' className='text-gray-300 hover:text-[#F97315] text-lg hidden md:block'>Contact</a>
         <a href='/userinput' className='text-gray-300 hover:text-[#F97315] text-[16px] md:text-lg'>Get Started</a>
         <button onClick={() => { window.open("https://github.com/ayushflows/GenAI-Hackathon_LogiX", "_blank");}} 
           className="px-4 py-[1px] rounded-full relative bg-slate-700 text-white text-[16px] md:text-lg hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">

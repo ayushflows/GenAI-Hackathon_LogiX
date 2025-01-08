@@ -113,6 +113,7 @@ function LandingPage() {
     ease: 'easeInOut',
     delay: 1.2,
   }}
+  onClick={() => { window.open("https://github.com/ayushflows/GenAI-Hackathon_LogiX", "_blank");}} 
 >
   Learn More
 </motion.button>
