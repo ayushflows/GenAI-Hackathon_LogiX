@@ -1,16 +1,29 @@
 const chat_main = require('../api/chat_langflow');
 
-let chat_result = '';
-
 module.exports.chat = async (req, res) => {
     try {
+
+        if (!req.body || !req.body.chat) {
+            res.status(400).json({ error: 'Invalid request: "chat" field is required' });
+            return;
+        }
+
         const { chat } = req.body;
-        let stringChat = JSON.stringify(chat);
-        let chat_result = await chat_main(stringChat);
-        // let sanitized_result = chat_result.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+        const stringChat = JSON.stringify(chat);
+        let chat_result;
+
+        try {
+            chat_result = await chat_main(stringChat);
+        } catch (innerError) {
+            console.error('Error processing chat_main:', innerError);
+            res.status(500).json({ error: 'Internal server error while processing chat' });
+            return;
+        }
+
         res.json({ message: chat_result });
     } catch (error) {
-        console.error('Error during chat operation:', error);
-        res.status(500).json({ error: 'Error during chat operation' });
+        // Log and respond to unexpected errors
+        console.error('Unexpected error during chat operation:', error);
+        res.status(500).json({ error: 'Unexpected error during chat operation' });
     }
 };
