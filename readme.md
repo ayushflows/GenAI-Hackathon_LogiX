@@ -137,7 +137,7 @@ These features work together to provide a comprehensive analysis of social media
 4. Open the application in your browser.
 
 ### Demo Video
-[YouTube Video Link](#)
+Youtube video link: [https://youtu.be/bFse-Gn8jkg?si=HQ3lk1wZRC8CuZmJ](https://youtu.be/bFse-Gn8jkg?si=HQ3lk1wZRC8CuZmJ)
 
 ### Repository Structure
 - **frontend/**: Contains the frontend code.
