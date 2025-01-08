@@ -2,26 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* Universal scrollbar styles for all elements */
 * {
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #f97316 #2E3139; /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #f97316 #2E3139;
   }
   
-  /* WebKit-based browsers */
+
   *::-webkit-scrollbar {
-    width: 8px; /* Scrollbar width */
+    width: 8px;
   }
   
   *::-webkit-scrollbar-track {
-    background: #2E3139; /* Scrollbar track color */
-    border-radius: 10px; /* Rounded corners for the track */
+    background: #2E3139;
+    border-radius: 10px;
   }
   
   *::-webkit-scrollbar-thumb {
-    background-color: #f97316; /* Scrollbar thumb color */
-    border-radius: 10px; /* Rounded corners for the thumb */
-    border: 2px solid #2E3139; /* Border around the thumb */
+    background-color: #f97316;
+    border-radius: 10px;
+    border: 2px solid #2E3139;
   }
   

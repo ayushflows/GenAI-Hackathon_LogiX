@@ -25,35 +25,19 @@ const PersonalChatbotAPI = {
         }
         
         const data = await response.json();
-        // console.log("recieved chat", data);
-        
-        return data.message;
+
+        let formattedMessage = data.message
+        .replace(/\*/g, '')
+        .replace(/\/n/g, '')
+        .replace(/(\d+\.)\s*/g, '\n$1 ')
+        .trim();
+  
+      return formattedMessage;
   
       } catch (error) {
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 4000);
-        console.log("error", error);
         return "Sorry, we can't answer this question at the moment, please try again later!";
       }
 
-    //   try {
-    //     const mockApiCall = (msg) =>
-    //       new Promise((resolve) => {
-    //         setTimeout(() => {
-    //           resolve({ answer: msg });
-    //         }, 1000);
-    //       });
-    
-    //     const response = await mockApiCall(message);
-    //     return response.answer;
-    //   } catch (error) {
-    //     setTimeout(() => {
-    //       window.location.reload();
-    //     }, 4000);
-    
-    //     return "Sorry, we can't answer this question at the moment, please try again later!";
-    //   }
     }
   };
   
