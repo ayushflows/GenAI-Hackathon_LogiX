@@ -4,7 +4,7 @@ const PersonalChatbotAPI = {
     GetChatbotResponse: async message => {
       return new Promise(function(resolve, reject) {
         setTimeout(function() {
-          if (message === "hi") resolve("Hi! Welcome to the Social Analytics, How can I assist you today?");
+          if (message === "hi") resolve("Hi! Welcome to the Social Analytics Chatbot, How can I assist you today?");
           else resolve("echo : " + message);
         }, 2000);
       });
