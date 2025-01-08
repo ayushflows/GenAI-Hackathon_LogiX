@@ -74,7 +74,7 @@ class LangflowClient {
 async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', stream = false) {
     const flowIdOrName = '4db6c10f-41f0-4de1-bef1-6fa943f290bb';
     const langflowId = '0258b77c-c5da-4ae1-96f7-9a0846f44c5e';
-    const applicationToken = 'AstraCS:lOxDpgwZZlGdgNgnaAgLyKjy:d04c45691e65f742e053a1c71a0d0341e9b0d901316e58183764fe3592cc1f63';
+    const applicationToken = 'AstraCS:peFAxKKHaYUuZzOCZxYfrJXQ:90fedbbeb5c879e9f358565f0b459b556a76ab2279dc6c1d3a9db90a6d3567c5';
     const langflowClient = new LangflowClient('https://api.langflow.astra.datastax.com',
         applicationToken);
 
@@ -84,7 +84,8 @@ async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', st
             "ChatOutput-HSa27": {},
             "Memory-iPk9i": {},
             "Prompt-GyGge": {},
-            "GoogleGenerativeAIModel-attJZ": {}
+            "ParseData-nI0lG": {},
+            "GroqModel-35kiu": {}
         };
         response = await langflowClient.runFlow(
             flowIdOrName,
@@ -94,15 +95,17 @@ async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', st
             outputType,
             tweaks,
             stream,
-            (data) => console.log("Received:", data.chunk), 
-            (message) => console.log("Stream Closed:", message), 
-            (error) => console.log("Stream Error:", error) 
+            (data) => console.log("Received:", data.chunk), // onUpdate
+            (message) => console.log("Stream Closed:", message), // onClose
+            (error) => console.log("Stream Error:", error) // onError
         );
         if (!stream && response && response.outputs) {
             const flowOutputs = response.outputs[0];
             const firstComponentOutputs = flowOutputs.outputs[0];
             const output = firstComponentOutputs.outputs.message;
-            return output;
+
+            console.log("Final Output:", output.message.text);
+            return output.message.text;
         }
     } catch (error) {
         console.error('Main Error', error.message);
@@ -110,4 +113,3 @@ async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', st
 }
 
 module.exports = chat_main;
-

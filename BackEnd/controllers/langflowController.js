@@ -24,16 +24,12 @@ module.exports.langflow = async (req, res) => {
         await chat_main(globalDataLang);
 
         const result = await main(globalDataLang);
-        let string_chat = JSON.stringify(result);
 
-        await chat_main(string_chat);
-        
         const parsedResult = JSON.parse(result.message.text);
         res.json(parsedResult);
     } catch (error) {
         console.error('Error during query of filtering data from langflow or AstraDb:', error);
         res.status(500).json({ error: 'Error during query of filtering data langflow or AstraDb' });
     }
-    
-};
 
+};
