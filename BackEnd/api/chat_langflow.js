@@ -57,10 +57,8 @@ class LangflowClient {
     async runFlow(flowIdOrName, langflowId, inputValue, inputType = 'chat', outputType = 'chat', tweaks = {}, stream = false, onUpdate, onClose, onError) {
         try {
             const initResponse = await this.initiateSession(flowIdOrName, langflowId, inputValue, inputType, outputType, stream, tweaks);
-            console.log('Init Response:', initResponse);
             if (stream && initResponse && initResponse.outputs && initResponse.outputs[0].outputs[0].artifacts.stream_url) {
                 const streamUrl = initResponse.outputs[0].outputs[0].artifacts.stream_url;
-                console.log(`Streaming from: ${streamUrl}`);
                 this.handleStream(streamUrl, onUpdate, onClose, onError);
             }
             return initResponse;
@@ -74,7 +72,7 @@ class LangflowClient {
 async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', stream = false) {
     const flowIdOrName = '4db6c10f-41f0-4de1-bef1-6fa943f290bb';
     const langflowId = '0258b77c-c5da-4ae1-96f7-9a0846f44c5e';
-    const applicationToken = 'AstraCS:peFAxKKHaYUuZzOCZxYfrJXQ:90fedbbeb5c879e9f358565f0b459b556a76ab2279dc6c1d3a9db90a6d3567c5';
+    const applicationToken = process.env.chatAPI;
     const langflowClient = new LangflowClient('https://api.langflow.astra.datastax.com',
         applicationToken);
 
@@ -103,8 +101,6 @@ async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', st
             const flowOutputs = response.outputs[0];
             const firstComponentOutputs = flowOutputs.outputs[0];
             const output = firstComponentOutputs.outputs.message;
-
-            console.log("Final Output:", output.message.text);
             return output.message.text;
         }
     } catch (error) {
