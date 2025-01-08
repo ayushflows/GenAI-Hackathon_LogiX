@@ -96,7 +96,7 @@ These features work together to provide a comprehensive analysis of social media
 | **Tailwind CSS**            | Styling and responsive design       |
 | **DataStax Astra DB**       | Scalable database for backend       |
 | **Langflow**                | Workflow creation and GPT integration|
-| **Firebase**                | Authentication and hosting          |
+| **Firebase & AWS**                | Authentication and hosting          |
 | **Express.js**              | Backend framework                   |
 
 
