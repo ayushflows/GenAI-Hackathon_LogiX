@@ -23,7 +23,6 @@ module.exports.astraDb_socialAccount = async (req, res) => {
 
 module.exports.astraDb_data = async (req, res) => {
     const { socialAccount, user, postType } = req.body;
-    console.log(socialAccount, user, postType);
 
     let fetchData = async () => {
         try {
@@ -56,7 +55,6 @@ module.exports.astraDb_fetchdata = async (req, res) => {
     try {
         globalDataLang = JSON.stringify(globalDataResults);
         const result = await main(globalDataLang);
-        console.log(result.message.text)
         const parsedResult = JSON.parse(result.message.text);
         res.json(parsedResult);
     } catch (error) {

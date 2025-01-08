@@ -22,7 +22,6 @@ module.exports.chat = async (req, res) => {
 
         res.json({ message: chat_result });
     } catch (error) {
-        // Log and respond to unexpected errors
         console.error('Unexpected error during chat operation:', error);
         res.status(500).json({ error: 'Unexpected error during chat operation' });
     }
