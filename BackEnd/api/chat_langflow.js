@@ -72,20 +72,20 @@ class LangflowClient {
 }
 
 async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', stream = false) {
-    const flowIdOrName = '4ef77327-4508-46a3-aa25-445f719d308f';
+    const flowIdOrName = '4db6c10f-41f0-4de1-bef1-6fa943f290bb';
     const langflowId = '0258b77c-c5da-4ae1-96f7-9a0846f44c5e';
-    const applicationToken = 'AstraCS:kykgdxarXmgLGRKyYqibqsQC:e7e1c0a8c3be3d192ba6cf45f6a66bedc3baee92b10d52438228f37eba716559';
+    const applicationToken = 'AstraCS:peFAxKKHaYUuZzOCZxYfrJXQ:90fedbbeb5c879e9f358565f0b459b556a76ab2279dc6c1d3a9db90a6d3567c5';
     const langflowClient = new LangflowClient('https://api.langflow.astra.datastax.com',
         applicationToken);
 
     try {
         const tweaks = {
-            "ChatInput-iuX5S": {},
-            "ChatOutput-i4JsA": {},
-            "Memory-0FYkK": {},
-            "Prompt-lo1iX": {},
-            "GroqModel-RpFYj": {},
-            "Prompt-nwwS7": {}
+            "ChatInput-zGNbi": {},
+            "ChatOutput-HSa27": {},
+            "Memory-iPk9i": {},
+            "Prompt-GyGge": {},
+            "ParseData-nI0lG": {},
+            "GroqModel-35kiu": {}
         };
         response = await langflowClient.runFlow(
             flowIdOrName,
@@ -95,20 +95,21 @@ async function chat_main(inputValue, inputType = 'chat', outputType = 'chat', st
             outputType,
             tweaks,
             stream,
-            (data) => console.log("Received:", data.chunk), 
-            (message) => console.log("Stream Closed:", message), 
-            (error) => console.log("Stream Error:", error)
+            (data) => console.log("Received:", data.chunk), // onUpdate
+            (message) => console.log("Stream Closed:", message), // onClose
+            (error) => console.log("Stream Error:", error) // onError
         );
         if (!stream && response && response.outputs) {
             const flowOutputs = response.outputs[0];
             const firstComponentOutputs = flowOutputs.outputs[0];
             const output = firstComponentOutputs.outputs.message;
+
+            console.log("Final Output:", output.message.text);
             return output.message.text;
         }
     } catch (error) {
         console.error('Main Error', error.message);
     }
 }
-
 
 module.exports = chat_main;
