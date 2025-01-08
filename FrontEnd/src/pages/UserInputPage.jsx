@@ -95,7 +95,6 @@ function UserInputPage() {
     setAccountError('');
     fetchDistinctUsers(selectedPlatform)
       .then((users) => {
-        console.log("data", users);
         setAccountOptions(users);
       })
       .catch((error) => {
